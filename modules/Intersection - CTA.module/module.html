@@ -1,0 +1,101 @@
+{% require_css %}
+<style>
+  :root {
+    --intersection-bg: #ffffff;
+    --intersection-bg-gradient: #ffffff;
+  }
+  
+  #hs_cos_wrapper_{{ name }} {
+    --intersection-bg: {{ module.row_settings.row_color.rgba }};
+    background-color: var(--intersection-bg);
+    {#{%- if module.row_settings.background_type == "gradient" -%}#}
+    /* --intersection-bg-gradient: {#{{ module.row_settings.row_color_2.rgba }}#}; */
+    /* background: linear-gradient(90deg, var(--intersection-bg) 0%, var(--intersection-bg-gradient) 100%); */
+    {# {%- endif -%} #}
+  }
+  
+  #hs_cos_wrapper_{{ name }} .intersection-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index:0;
+    padding-top: {{ module.row_settings.padding_top }}px;
+    padding-bottom: {{ module.row_settings.padding_bottom }}px;
+  }
+  
+  #hs_cos_wrapper_{{ name }} .intersection-content {
+    --intersection-bg: {{ module.row_settings.row_color.rgba }};
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: max-content;
+    background-color: var(--intersection-bg);
+    position: relative;
+    z-index: 1;
+    padding-inline: {{ module.accent_lines.content_lines_space }}px;
+  }
+  
+  #hs_cos_wrapper_{{ name }} .intersection-content > div {
+
+  }
+  
+  #hs_cos_wrapper_{{ name }} .intersection-content p,
+  #hs_cos_wrapper_{{ name }} .intersection-content h1,
+  #hs_cos_wrapper_{{ name }} .intersection-content h2,
+  #hs_cos_wrapper_{{ name }} .intersection-content h3,
+  #hs_cos_wrapper_{{ name }} .intersection-content h4,
+  #hs_cos_wrapper_{{ name }} .intersection-content h5,
+  #hs_cos_wrapper_{{ name }} .intersection-content h6 {
+    margin-bottom: 0;
+    text-transform: uppercase;
+  }
+  
+  #hs_cos_wrapper_{{ name }} .intersection-content .intersection-cta-button {
+    margin-left: {{ module.cta_button.text_cta_space }}px;
+  }
+  
+  #hs_cos_wrapper_{{ name }} .intersection-line {
+    width: 100%;
+    height: {{ module.accent_lines.line_thickness }}px;
+    {%- if module.accent_lines.line_type == "solid"-%}
+    background-color: {{ module.accent_lines.line_color.rgba }};
+    {%- endif -%}
+    {%- if module.accent_lines.line_type == "gradient"-%}
+    background: radial-gradient(circle, {{ module.accent_lines.line_color.rgba }} {{ module.accent_lines.gradient_start }}%, {{ module.accent_lines.line_color_2.rgba }} 100%);
+    {%- endif -%}
+    {%- if module.accent_lines.rounded_corners -%}
+    border-radius: 99999px;
+    {%- endif -%}
+    position: absolute;
+    z-index: -1;
+  }
+  
+  @media (max-width: 575px) {
+    #hs_cos_wrapper_{{ name }} .intersection-content {
+      flex-direction: column;
+    }
+    
+    #hs_cos_wrapper_{{ name }} .intersection-content .intersection-cta-button {
+      margin-left: 0;
+      margin-top: calc({{ module.cta_button.text_cta_space }}px / 2);
+    }
+  }
+</style>
+{% end_require_css %}
+
+<div class="{{ module.row_settings.content_width }}" style="{% if module.row_settings.content_width == 'custom' %} max-width: {{ module.row_settings.set_width }}px; margin: auto;{% endif %}">
+  <div class="intersection-flex">
+    {% if module.add_accent_lines %}
+    <div class="intersection-line">
+    </div>
+    {% endif %}
+    <div class="intersection-content">
+       {% inline_rich_text field="module.text_field" value="{{ module.text_field }}" %}
+      {% if module.add_cta_button  %}
+      <a class="intersection-cta-button {% if module.cta_button.cta_button_style == "cta_1" -%} cta-primary {%- endif -%} {%- if module.cta_button.cta_button_style == "cta_2" -%} cta-secondary {%- endif -%} {%- if module.cta_button.cta_button_style == "cta_3" -%} cta-tertiary {%- endif -%} {%- if module.cta_button.cta_button_style == "cta_4" -%} cta-four {%- endif -%} {%- if module.cta_button.cta_button_style == "cta_5" -%} cta-five {%- endif -%}" href="{{ module.cta_button.button_link.url.href }}">{{ module.cta_button.cta_button_text }}</a>
+      {% endif %}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,389 @@
+[ {
+  "id" : "50151641-dd7f-df98-afc7-9048c4138037",
+  "name" : "text_field",
+  "display_width" : null,
+  "label" : "Text",
+  "required" : false,
+  "locked" : false,
+  "type" : "richtext",
+  "default" : "<h4>Intersection Placeholder Text</h4>"
+}, {
+  "id" : "1308cec6-494c-5656-f1da-1698dfc5e0c9",
+  "name" : "add_accent_lines",
+  "display_width" : null,
+  "label" : "Add accent lines",
+  "required" : false,
+  "locked" : false,
+  "display" : "checkbox",
+  "type" : "boolean",
+  "default" : true
+}, {
+  "id" : "3f4932b5-3f75-6415-4900-2e558fc24b09",
+  "name" : "accent_lines",
+  "display_width" : null,
+  "label" : "Accent lines",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : null,
+    "controlling_field_path" : "add_accent_lines",
+    "controlling_value_regex" : "true",
+    "property" : null,
+    "operator" : "EQUAL",
+    "access" : null
+  },
+  "children" : [ {
+    "id" : "7e2a5bec-fd18-f060-456c-c2d491f73c64",
+    "name" : "line_type",
+    "display_width" : null,
+    "label" : "Line type",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "solid", "Solid color" ], [ "gradient", "Gradient" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "default" : "gradient"
+  }, {
+    "id" : "9774d26e-003a-0ac5-b1b9-df2d546eb235",
+    "name" : "line_color",
+    "display_width" : null,
+    "label" : "Line color",
+    "required" : false,
+    "locked" : false,
+    "type" : "color",
+    "default" : {
+      "color" : "#234759",
+      "opacity" : 100
+    }
+  }, {
+    "id" : "00e90ad6-e422-ceb6-aa7c-2b9c6c2fecb9",
+    "name" : "line_color_2",
+    "display_width" : null,
+    "label" : "Line color 2 (Gradient)",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "accent_lines.line_type",
+      "controlling_value_regex" : "gradient",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "type" : "color",
+    "default" : {
+      "color" : "#234759",
+      "opacity" : 0
+    }
+  }, {
+    "id" : "1de4cb41-e50b-d888-b7f6-1ab7042e464c",
+    "name" : "gradient_start",
+    "display_width" : null,
+    "label" : "Gradient starting point",
+    "help_text" : "Usually best between 30 to 50, use in combination with content width to determine where the gradient ends",
+    "required" : false,
+    "locked" : false,
+    "display" : "slider",
+    "min" : 0,
+    "max" : 90,
+    "step" : 1,
+    "type" : "number",
+    "default" : 50
+  }, {
+    "id" : "a6fbfc3a-703d-2f52-a316-73721dbe46c4",
+    "name" : "content_lines_space",
+    "display_width" : null,
+    "label" : "Space between content and lines",
+    "required" : false,
+    "locked" : false,
+    "display" : "slider",
+    "min" : 0,
+    "max" : 150,
+    "step" : 1,
+    "type" : "number",
+    "default" : 30
+  }, {
+    "id" : "df59b54a-f8f9-da62-c3c3-4b435d2d8e20",
+    "name" : "line_thickness",
+    "display_width" : null,
+    "label" : "Line thickness",
+    "required" : false,
+    "locked" : false,
+    "display" : "slider",
+    "min" : 0,
+    "max" : 10,
+    "step" : 1,
+    "type" : "number",
+    "default" : 1
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "type" : "group",
+  "default" : {
+    "line_type" : "gradient",
+    "line_color" : {
+      "color" : "#234759",
+      "opacity" : 100
+    },
+    "line_color_2" : {
+      "color" : "#234759",
+      "opacity" : 0
+    },
+    "gradient_start" : 50,
+    "content_lines_space" : 30,
+    "line_thickness" : 1
+  }
+}, {
+  "id" : "745819a6-cc46-778f-f3a4-57c7da6e44e7",
+  "name" : "add_cta_button",
+  "display_width" : null,
+  "label" : "Add CTA button",
+  "required" : false,
+  "locked" : false,
+  "display" : "checkbox",
+  "type" : "boolean",
+  "default" : false
+}, {
+  "id" : "53fe6af0-a734-051e-aa5d-b8833c755055",
+  "name" : "cta_button",
+  "display_width" : null,
+  "label" : "CTA button",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : null,
+    "controlling_field_path" : "add_cta_button",
+    "controlling_value_regex" : "true",
+    "property" : null,
+    "operator" : "EQUAL",
+    "access" : null
+  },
+  "children" : [ {
+    "id" : "de222545-c405-b788-7f62-463030ffe8ed",
+    "name" : "cta_button_text",
+    "display_width" : null,
+    "label" : "CTA Button Text",
+    "required" : false,
+    "locked" : false,
+    "validation_regex" : "",
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "add_cta_button",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "allow_new_line" : false,
+    "show_emoji_picker" : false,
+    "type" : "text",
+    "default" : "Read More"
+  }, {
+    "id" : "93bba7bc-3b85-3e3f-37c5-2bcd0b283720",
+    "name" : "cta_button_style",
+    "display_width" : null,
+    "label" : "CTA Button Style",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "cta_1", "Primary" ], [ "cta_2", "Secondary" ], [ "cta_3", "Tertiary" ], [ "cta_4", "Four" ], [ "cta_5", "Five" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "default" : "cta_1"
+  }, {
+    "id" : "9ce2c13f-cb64-c09a-c654-73092676d8ae",
+    "name" : "text_cta_space",
+    "display_width" : null,
+    "label" : "Space between text and CTA",
+    "required" : false,
+    "locked" : false,
+    "display" : "slider",
+    "min" : 1,
+    "max" : 150,
+    "step" : 1,
+    "type" : "number",
+    "default" : 30
+  }, {
+    "id" : "b76dbcf9-9542-8d4a-d3e3-be6d09646530",
+    "name" : "button_link",
+    "display_width" : null,
+    "label" : "Button link",
+    "required" : false,
+    "locked" : false,
+    "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG", "CALL_TO_ACTION", "PHONE_NUMBER", "WHATSAPP_NUMBER", "PAYMENT" ],
+    "show_advanced_rel_options" : false,
+    "type" : "link",
+    "default" : {
+      "url" : {
+        "content_id" : null,
+        "type" : "EXTERNAL",
+        "href" : ""
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "type" : "group",
+  "default" : {
+    "cta_button_text" : "Read More",
+    "cta_button_style" : "cta_1",
+    "text_cta_space" : 30,
+    "button_link" : {
+      "url" : {
+        "content_id" : null,
+        "type" : "EXTERNAL",
+        "href" : ""
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  }
+}, {
+  "id" : "95e55292-b3b7-241b-2f21-8451514d4ad8",
+  "name" : "row_settings",
+  "display_width" : null,
+  "label" : "///// Row settings",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "b4988552-d990-1bd6-77a6-e3f031ea4437",
+    "name" : "background_type",
+    "display_width" : null,
+    "label" : "Background type",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "add_accent_lines",
+      "controlling_value_regex" : "hideforlater",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "solid", "Solid color" ], [ "gradient", "Gradient" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "default" : "solid"
+  }, {
+    "id" : "f89019cf-838e-94f9-2a76-8833ef63d2fc",
+    "name" : "row_color",
+    "display_width" : null,
+    "label" : "Background color",
+    "required" : false,
+    "locked" : false,
+    "type" : "color",
+    "default" : {
+      "color" : "#ffffff",
+      "opacity" : 100
+    }
+  }, {
+    "id" : "f7b4b1de-579b-5e9f-1fbd-1820c44c5b26",
+    "name" : "row_color_2",
+    "display_width" : null,
+    "label" : "Background color 2 (Gradient)",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "row_settings.background_type",
+      "controlling_value_regex" : "gradient",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "type" : "color",
+    "default" : {
+      "color" : null,
+      "opacity" : null
+    }
+  }, {
+    "id" : "4300e6a2-ba1b-e12b-a773-5dcc55355add",
+    "name" : "content_width",
+    "display_width" : null,
+    "label" : "Content width",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "container", "Standard" ], [ "container-fluid", "Full" ], [ "container-slim", "Slim" ], [ "custom", "Custom" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "default" : "custom"
+  }, {
+    "id" : "3407abbf-2eae-53b0-2d5f-c85d736de55d",
+    "name" : "set_width",
+    "display_width" : null,
+    "label" : "Set width",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "row_settings.content_width",
+      "controlling_value_regex" : "custom",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "slider",
+    "min" : 100,
+    "max" : 1600,
+    "step" : 1,
+    "type" : "number",
+    "default" : 1400
+  }, {
+    "id" : "f4397acf-940d-9483-e517-e146753298d8",
+    "name" : "padding_top",
+    "display_width" : null,
+    "label" : "Padding Top",
+    "required" : false,
+    "locked" : false,
+    "display" : "slider",
+    "min" : 0,
+    "max" : 500,
+    "step" : 1,
+    "type" : "number",
+    "default" : 50
+  }, {
+    "id" : "f2e23ba3-cded-cd0f-c30e-1f97d0a82c54",
+    "name" : "padding_bottom",
+    "display_width" : null,
+    "label" : "Padding Bottom",
+    "required" : false,
+    "locked" : false,
+    "display" : "slider",
+    "min" : 0,
+    "max" : 500,
+    "step" : 1,
+    "type" : "number",
+    "default" : 50
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "type" : "group",
+  "default" : {
+    "background_type" : "solid",
+    "row_color" : {
+      "color" : "#ffffff",
+      "opacity" : 100
+    },
+    "row_color_2" : {
+      "color" : null,
+      "opacity" : null
+    },
+    "content_width" : "custom",
+    "set_width" : 1400,
+    "padding_top" : 50,
+    "padding_bottom" : 50
+  }
+} ]

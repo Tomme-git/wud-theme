@@ -1,0 +1,18 @@
+{
+  "global" : false,
+  "icon" : "https://cdn2.hubspot.net/hubfs/507386/CLEAN-images/module-icons/icon-logo-scroller.svg",
+  "host_template_types" : [ "PAGE", "BLOG_LISTING" ],
+  "module_id" : 140486055753,
+  "css_assets" : [ {
+    "autoload" : true,
+    "path" : "../../../@marketplace/Helpful_Hero/CLEAN-6-1-theme/css/3rd-party/slick-slider.css",
+    "name" : "slick-slider.css"
+  } ],
+  "js_assets" : [ {
+    "autoload" : true,
+    "path" : "../../../@marketplace/Helpful_Hero/CLEAN-6-1-theme/js/slick-slider-min.js",
+    "name" : "slick-slider-min.js"
+  } ],
+  "label" : "T - Logo Scroller (Pro)",
+  "is_available_for_new_content" : true
+}

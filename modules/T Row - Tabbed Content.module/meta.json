@@ -1,0 +1,8 @@
+{
+  "global" : false,
+  "icon" : "https://f.hubspotusercontent30.net/hubfs/507386/CLEAN-images/module-icons/icon-tabbed-content.svg",
+  "host_template_types" : [ "PAGE", "BLOG_POST", "BLOG_LISTING" ],
+  "module_id" : 132503259514,
+  "label" : "T Row - Tabbed Content",
+  "is_available_for_new_content" : true
+}

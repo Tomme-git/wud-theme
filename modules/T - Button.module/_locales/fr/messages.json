@@ -1,0 +1,132 @@
+{
+  "button_text.default" : {
+    "message" : "Ajouter un bouton de lien ici",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button_text.label" : {
+    "message" : "Texte du bouton",
+    "description" : "",
+    "placeholders" : null
+  },
+  "horizontal_spacing.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "horizontal_spacing.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "horizontal_spacing.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "horizontal_spacing.label" : {
+    "message" : "Number",
+    "description" : null,
+    "placeholders" : null
+  },
+  "horizontal_spacing.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "link.label" : {
+    "message" : " ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "name" : {
+    "message" : "T - Button",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.button_color.label" : {
+    "message" : "Couleur du bouton",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button_font.label" : {
+    "message" : "Police du bouton",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button_hover_color.label" : {
+    "message" : "Couleur du bouton lors du passage du curseur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.label" : {
+    "message" : "Options de style",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.override_default_style.label" : {
+    "message" : "Remplacer le style par défaut",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text_hover_color.label" : {
+    "message" : "Couleur du texte lors du passage du curseur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style_1.name" : {
+    "message" : "T - Button",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style_1.spacing_field.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style_1.spacing_field.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style_1.spacing_field.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style_1.spacing_field.label" : {
+    "message" : "Spacing",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style_1.spacing_field.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "vertical_spacing.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "vertical_spacing.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "vertical_spacing.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "vertical_spacing.label" : {
+    "message" : "Number",
+    "description" : null,
+    "placeholders" : null
+  },
+  "vertical_spacing.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  }
+}

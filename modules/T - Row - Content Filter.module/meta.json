@@ -1,0 +1,13 @@
+{
+  "global" : false,
+  "icon" : "https://f.hubspotusercontent30.net/hubfs/507386/CLEAN-images/module-icons/icon-content-filter.svg",
+  "host_template_types" : [ "PAGE", "BLOG_LISTING" ],
+  "module_id" : 147193994837,
+  "js_assets" : [ {
+    "autoload" : true,
+    "path" : "../../../@marketplace/Helpful_Hero/CLEAN-6-1-theme/js/isotope.js",
+    "name" : "isotope.js"
+  } ],
+  "label" : "T - Content Filter - Opt 1 (Pro)",
+  "is_available_for_new_content" : true
+}

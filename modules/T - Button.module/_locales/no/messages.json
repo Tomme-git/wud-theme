@@ -1,0 +1,132 @@
+{
+  "button_text.default" : {
+    "message" : "Legg til en knapplenke her",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button_text.label" : {
+    "message" : "Knapptekst",
+    "description" : "",
+    "placeholders" : null
+  },
+  "horizontal_spacing.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "horizontal_spacing.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "horizontal_spacing.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "horizontal_spacing.label" : {
+    "message" : "Number",
+    "description" : null,
+    "placeholders" : null
+  },
+  "horizontal_spacing.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "link.label" : {
+    "message" : " ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "name" : {
+    "message" : "T - Button",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.button_color.label" : {
+    "message" : "Knappfarge",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button_font.label" : {
+    "message" : "Knappeteksttype",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button_hover_color.label" : {
+    "message" : "Knappefarge ved bevegelse over",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.label" : {
+    "message" : "Stilalternativer",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.override_default_style.label" : {
+    "message" : "Overstyr standard stil",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text_hover_color.label" : {
+    "message" : "Tekstfarge ved bevegelse over",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style_1.name" : {
+    "message" : "T - Button",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style_1.spacing_field.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style_1.spacing_field.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style_1.spacing_field.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style_1.spacing_field.label" : {
+    "message" : "Spacing",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style_1.spacing_field.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "vertical_spacing.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "vertical_spacing.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "vertical_spacing.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "vertical_spacing.label" : {
+    "message" : "Number",
+    "description" : null,
+    "placeholders" : null
+  },
+  "vertical_spacing.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  }
+}

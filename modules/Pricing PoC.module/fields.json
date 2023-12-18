@@ -1,0 +1,1627 @@
+[ {
+  "id" : "4610d77f-879e-5330-df99-7cf649080a19",
+  "name" : "style",
+  "display_width" : null,
+  "label" : "Style",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "aad64b91-a11b-429b-8c14-8a223d98d581",
+    "name" : "test",
+    "display_width" : null,
+    "label" : "Test:",
+    "inline_help_text" : "This is currently a test. Please disregard.",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "default" : false
+  } ],
+  "tab" : "STYLE",
+  "expanded" : false,
+  "type" : "group",
+  "default" : {
+    "test" : false
+  }
+}, {
+  "id" : "e8221aa9-1c70-1f6c-3014-0c0786c03f59",
+  "name" : "card_content",
+  "display_width" : null,
+  "label" : "Card content",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "ae81777f-4f12-1c48-2cb0-0d57f7764a01",
+    "name" : "card_1",
+    "display_width" : null,
+    "label" : "Card 1",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "6fd4c447-af0c-055a-918b-dae58558f4ac",
+      "name" : "heading",
+      "display_width" : null,
+      "label" : "Card heading",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "placeholder" : "Near real-time data",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : "Near real-time data"
+    }, {
+      "id" : "5bdb0ed9-05e0-f795-87ef-b5a47af5f56d",
+      "name" : "text",
+      "display_width" : null,
+      "label" : "Card text",
+      "required" : false,
+      "locked" : false,
+      "type" : "richtext",
+      "default" : "<p>Ensure you always have fresh data in the channels you work with, with hourly runs for correct prices and stock.</p>"
+    }, {
+      "id" : "b3cd7118-47d8-b17c-900a-efd684aabc7b",
+      "name" : "uniq_btn",
+      "display_width" : null,
+      "label" : "Unique Button Style",
+      "help_text" : "Gives the button a unique style - separate from the shared style set in the settings tab. <b>USE THIS SPARINGLY - IF AT ALL</b>",
+      "inline_help_text" : "<b>USE THIS SPARINGLY - IF AT ALL</b>",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "card_content.card_1.use_uniq_btn",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "cta-primary", "Primary" ], [ "cta-secondary", "Secondary" ], [ "cta-tertiary", "Tertiary" ], [ "cta-four", "four" ], [ "cta-five", "five" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice"
+    }, {
+      "id" : "1446c9ac-da3e-ca43-8709-0cb22478ef14",
+      "name" : "use_uniq_btn",
+      "display_width" : null,
+      "label" : "Use Unique Button",
+      "help_text" : "Allows you to set a unique button style for the individual card - use sparingly",
+      "inline_help_text" : "",
+      "required" : false,
+      "locked" : false,
+      "display" : "checkbox",
+      "type" : "boolean",
+      "default" : false
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "type" : "group",
+    "default" : {
+      "heading" : "Near real-time data",
+      "text" : "<p>Ensure you always have fresh data in the channels you work with, with hourly runs for correct prices and stock.</p>",
+      "use_uniq_btn" : false
+    }
+  }, {
+    "id" : "e1200970-f741-f01a-ea72-5b5caef6c7cb",
+    "name" : "card_2",
+    "display_width" : null,
+    "label" : "Card 2",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "499af3a4-1d01-ceb1-f649-3af3975a1a60",
+      "name" : "heading",
+      "display_width" : null,
+      "label" : "Card heading",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "placeholder" : "Product Search Ads",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : "Product Search Ads"
+    }, {
+      "id" : "29dcd131-f7b6-28a5-251e-8e2f6286980a",
+      "name" : "text",
+      "display_width" : null,
+      "label" : "Card text",
+      "required" : false,
+      "locked" : false,
+      "type" : "richtext",
+      "default" : "<p>Take up more SERP space with dynamic, product based <a href=\"https://www.wakeupdata.com/dynamic-google-text-ads?hsLang=en\" rel=\"noopener\">Google Search Ads</a>.</p>"
+    }, {
+      "id" : "f4107ed8-5d08-3eef-32a7-eb5a7f459838",
+      "name" : "uniq_btn",
+      "display_width" : null,
+      "label" : "Unique Button Style",
+      "help_text" : "Gives the button a unique style - separate from the shared style set in the settings tab. <b>USE THIS SPARINGLY - IF AT ALL</b>",
+      "inline_help_text" : "<b>USE THIS SPARINGLY - IF AT ALL</b>",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "card_content.card_2.use_uniq_btn",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "cta-primary", "Primary" ], [ "cta-secondary", "Secondary" ], [ "cta-tertiary", "Tertiary" ], [ "cta-four", "four" ], [ "cta-five", "five" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice"
+    }, {
+      "id" : "a897b39f-6679-676b-26d7-3c210eef6ac6",
+      "name" : "use_uniq_btn",
+      "display_width" : null,
+      "label" : "Use Unique Button",
+      "help_text" : "Allows you to set a unique button style for the individual card - use sparingly",
+      "inline_help_text" : "",
+      "required" : false,
+      "locked" : false,
+      "display" : "checkbox",
+      "type" : "boolean",
+      "default" : false
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "type" : "group",
+    "default" : {
+      "heading" : "Product Search Ads",
+      "text" : "<p>Take up more SERP space with dynamic, product based <a href=\"https://www.wakeupdata.com/dynamic-google-text-ads?hsLang=en\" rel=\"noopener\">Google Search Ads</a>.</p>",
+      "use_uniq_btn" : false
+    }
+  }, {
+    "id" : "ecdc02ec-ffee-4a53-f1c3-84e7beaacc97",
+    "name" : "card_3",
+    "display_width" : null,
+    "label" : "Card 3",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "8f4a7ad9-7ebb-e350-4aa5-83b9f85f96f2",
+      "name" : "heading",
+      "display_width" : null,
+      "label" : "Card heading",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "placeholder" : "Enrich Social Images",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : "Enrich Social Images"
+    }, {
+      "id" : "80c52cf6-d1ac-5a3a-baaa-52c3785e19a2",
+      "name" : "text",
+      "display_width" : null,
+      "label" : "Card text",
+      "required" : false,
+      "locked" : false,
+      "type" : "richtext",
+      "default" : "<p>Increase revenue from social channels by creating personalised content for all your products.</p>"
+    }, {
+      "id" : "6d4fade6-c30c-c82e-b308-c7bb4ef2e930",
+      "name" : "uniq_btn",
+      "display_width" : null,
+      "label" : "Unique Button Style",
+      "help_text" : "Gives the button a unique style - separate from the shared style set in the settings tab. <b>USE THIS SPARINGLY - IF AT ALL</b>",
+      "inline_help_text" : "<b>USE THIS SPARINGLY - IF AT ALL</b>",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "card_content.card_3.use_uniq_btn",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "cta-primary", "Primary" ], [ "cta-secondary", "Secondary" ], [ "cta-tertiary", "Tertiary" ], [ "cta-four", "four" ], [ "cta-five", "five" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice"
+    }, {
+      "id" : "cafa7edc-ee6f-8693-972d-1b388d639c46",
+      "name" : "use_uniq_btn",
+      "display_width" : null,
+      "label" : "Use Unique Button",
+      "help_text" : "Allows you to set a unique button style for the individual card - use sparingly",
+      "inline_help_text" : "",
+      "required" : false,
+      "locked" : false,
+      "display" : "checkbox",
+      "type" : "boolean",
+      "default" : false
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "type" : "group",
+    "default" : {
+      "heading" : "Enrich Social Images",
+      "text" : "<p>Increase revenue from social channels by creating personalised content for all your products.</p>",
+      "use_uniq_btn" : false
+    }
+  }, {
+    "id" : "d22e0c22-b6a5-d122-0e84-cf476eade3a0",
+    "name" : "card_4",
+    "display_width" : null,
+    "label" : "Card 4",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "96841dcc-aab0-afb0-469e-0a7a28597e81",
+      "name" : "heading",
+      "display_width" : null,
+      "label" : "Card heading",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "placeholder" : "Incremental Updates",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : "Incremental Updates"
+    }, {
+      "id" : "b65af65f-77ce-f56d-34aa-b9b18fe01778",
+      "name" : "text",
+      "display_width" : null,
+      "label" : "Card text",
+      "required" : false,
+      "locked" : false,
+      "type" : "richtext",
+      "default" : "<p>Update prices and stock before with our game-changing solution for ERP-based companies. Eliminate slow loading times and streamline inventory management, saving you time and money. &nbsp;</p>"
+    }, {
+      "id" : "1ca52bc6-cee0-1ecf-f532-8d71e4989721",
+      "name" : "uniq_btn",
+      "display_width" : null,
+      "label" : "Unique Button Style",
+      "help_text" : "Gives the button a unique style - separate from the shared style set in the settings tab. <b>USE THIS SPARINGLY - IF AT ALL</b>",
+      "inline_help_text" : "<b>USE THIS SPARINGLY - IF AT ALL</b>",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "card_content.card_4.use_uniq_btn",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "cta-primary", "Primary" ], [ "cta-secondary", "Secondary" ], [ "cta-tertiary", "Tertiary" ], [ "cta-four", "four" ], [ "cta-five", "five" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice"
+    }, {
+      "id" : "1935e197-3cd8-aea0-daa3-5d97ffe23321",
+      "name" : "use_uniq_btn",
+      "display_width" : null,
+      "label" : "Use Unique Button",
+      "help_text" : "Allows you to set a unique button style for the individual card - use sparingly",
+      "inline_help_text" : "",
+      "required" : false,
+      "locked" : false,
+      "display" : "checkbox",
+      "type" : "boolean",
+      "default" : false
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "type" : "group",
+    "default" : {
+      "heading" : "Incremental Updates",
+      "text" : "<p>Update prices and stock before with our game-changing solution for ERP-based companies. Eliminate slow loading times and streamline inventory management, saving you time and money. &nbsp;</p>",
+      "use_uniq_btn" : false
+    }
+  }, {
+    "id" : "10dd30cf-9c06-a818-c50b-44e553946e9e",
+    "name" : "card_5",
+    "display_width" : null,
+    "label" : "Card 5",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "7333d084-5e3a-5516-3372-7cee0a125371",
+      "name" : "heading",
+      "display_width" : null,
+      "label" : "Card heading",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "placeholder" : "Competitor Monitoring ",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : "Competitor Monitoring "
+    }, {
+      "id" : "0e6b09f4-9fd7-51fd-5eef-43bd6e982c42",
+      "name" : "text",
+      "display_width" : null,
+      "label" : "Card text",
+      "required" : false,
+      "locked" : false,
+      "type" : "richtext",
+      "default" : "<p>Get insight into your <a href=\"https://www.wakeupdata.com/competitor-monitoring?hsLang=en\" rel=\"noopener\">competitors' pricing</a> strategies and use the data to enrich your feeds. <span>Use this information to increase / decrease bidding on your ads.</span></p>"
+    }, {
+      "id" : "7558073a-6b9d-6ed3-0265-cdd7bd5e2e2e",
+      "name" : "uniq_btn",
+      "display_width" : null,
+      "label" : "Unique Button Style",
+      "help_text" : "Gives the button a unique style - separate from the shared style set in the settings tab. <b>USE THIS SPARINGLY - IF AT ALL</b>",
+      "inline_help_text" : "<b>USE THIS SPARINGLY - IF AT ALL</b>",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "card_content.card_5.use_uniq_btn",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "cta-primary", "Primary" ], [ "cta-secondary", "Secondary" ], [ "cta-tertiary", "Tertiary" ], [ "cta-four", "four" ], [ "cta-five", "five" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice"
+    }, {
+      "id" : "6f868036-573a-1563-2bc5-5f2c420b4496",
+      "name" : "use_uniq_btn",
+      "display_width" : null,
+      "label" : "Use Unique Button",
+      "help_text" : "Allows you to set a unique button style for the individual card - use sparingly",
+      "inline_help_text" : "",
+      "required" : false,
+      "locked" : false,
+      "display" : "checkbox",
+      "type" : "boolean",
+      "default" : false
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "type" : "group",
+    "default" : {
+      "heading" : "Competitor Monitoring ",
+      "text" : "<p>Get insight into your <a href=\"https://www.wakeupdata.com/competitor-monitoring?hsLang=en\" rel=\"noopener\">competitors' pricing</a> strategies and use the data to enrich your feeds. <span>Use this information to increase / decrease bidding on your ads.</span></p>",
+      "use_uniq_btn" : false
+    }
+  }, {
+    "id" : "abd50085-109b-daa7-1dfc-3d9e8ce61d04",
+    "name" : "card_6",
+    "display_width" : null,
+    "label" : "Card 6",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "19201ef6-5c55-748f-2c30-c955d54b95a8",
+      "name" : "heading",
+      "display_width" : null,
+      "label" : "Card heading",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "placeholder" : "Background Removal",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : "Background Removal"
+    }, {
+      "id" : "eefebd9d-87bd-e7e2-2b0b-0f62939c1bc0",
+      "name" : "text",
+      "display_width" : null,
+      "label" : "Card text",
+      "required" : false,
+      "locked" : false,
+      "type" : "richtext",
+      "default" : "<p>Save time with automated background removal on your product images.<br>Reduce rejection in Google Merchant Center with product images that follow Google’s guidelines. A one-time fee.</p>"
+    }, {
+      "id" : "4621403d-9346-ef8c-fe1a-640edd67d4ca",
+      "name" : "uniq_btn",
+      "display_width" : null,
+      "label" : "Unique Button Style",
+      "help_text" : "Gives the button a unique style - separate from the shared style set in the settings tab. <b>USE THIS SPARINGLY - IF AT ALL</b>",
+      "inline_help_text" : "<b>USE THIS SPARINGLY - IF AT ALL</b>",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "card_content.card_6.use_uniq_btn",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "cta-primary", "Primary" ], [ "cta-secondary", "Secondary" ], [ "cta-tertiary", "Tertiary" ], [ "cta-four", "four" ], [ "cta-five", "five" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice"
+    }, {
+      "id" : "939eb0bd-5db2-23af-968b-7344e0fd8137",
+      "name" : "use_uniq_btn",
+      "display_width" : null,
+      "label" : "Use Unique Button",
+      "help_text" : "Allows you to set a unique button style for the individual card - use sparingly",
+      "inline_help_text" : "",
+      "required" : false,
+      "locked" : false,
+      "display" : "checkbox",
+      "type" : "boolean",
+      "default" : false
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "type" : "group",
+    "default" : {
+      "heading" : "Background Removal",
+      "text" : "<p>Save time with automated background removal on your product images.<br>Reduce rejection in Google Merchant Center with product images that follow Google’s guidelines. A one-time fee.</p>",
+      "use_uniq_btn" : false
+    }
+  }, {
+    "id" : "8d056d08-c94d-0c00-5101-23f7a3e8377c",
+    "name" : "card_7",
+    "display_width" : null,
+    "label" : "Card 7",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "3ca87482-533b-906c-504a-95a9e8de0ff3",
+      "name" : "heading",
+      "display_width" : null,
+      "label" : "Card heading",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "placeholder" : "Crawl Websites",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : "Crawl Websites"
+    }, {
+      "id" : "cee60bf8-6564-c361-445d-be5277c579eb",
+      "name" : "text",
+      "display_width" : null,
+      "label" : "Card text",
+      "required" : false,
+      "locked" : false,
+      "type" : "richtext",
+      "default" : "<p><span>Looking to create a product </span><a href=\"https://www.wakeupdata.com/product-feed-crawl-scrape?hsLang=en\" rel=\"noopener\">feed from scratch</a>.<br><span>Our crawl tool makes it easy to collect product data from any shopping platform or website.</span><span>&nbsp;</span></p>"
+    }, {
+      "id" : "36c1199d-e8e3-756e-8ef7-43392822e645",
+      "name" : "uniq_btn",
+      "display_width" : null,
+      "label" : "Unique Button Style",
+      "help_text" : "Gives the button a unique style - separate from the shared style set in the settings tab. <b>USE THIS SPARINGLY - IF AT ALL</b>",
+      "inline_help_text" : "<b>USE THIS SPARINGLY - IF AT ALL</b>",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "card_content.card_7.use_uniq_btn",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "cta-primary", "Primary" ], [ "cta-secondary", "Secondary" ], [ "cta-tertiary", "Tertiary" ], [ "cta-four", "four" ], [ "cta-five", "five" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice"
+    }, {
+      "id" : "da7521e9-e229-44f0-fa3c-d2d2422e09e2",
+      "name" : "use_uniq_btn",
+      "display_width" : null,
+      "label" : "Use Unique Button",
+      "help_text" : "Allows you to set a unique button style for the individual card - use sparingly",
+      "inline_help_text" : "",
+      "required" : false,
+      "locked" : false,
+      "display" : "checkbox",
+      "type" : "boolean",
+      "default" : false
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "type" : "group",
+    "default" : {
+      "heading" : "Crawl Websites",
+      "text" : "<p><span>Looking to create a product </span><a href=\"https://www.wakeupdata.com/product-feed-crawl-scrape?hsLang=en\" rel=\"noopener\">feed from scratch</a>.<br><span>Our crawl tool makes it easy to collect product data from any shopping platform or website.</span><span>&nbsp;</span></p>",
+      "use_uniq_btn" : false
+    }
+  }, {
+    "id" : "e43cfc11-c441-752f-330f-1abad8bf7184",
+    "name" : "card_8",
+    "display_width" : null,
+    "label" : "Card 8",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "f97a9b11-7464-897c-fd73-fa58d0942a58",
+      "name" : "heading",
+      "display_width" : null,
+      "label" : "Card heading",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "placeholder" : "Scrape From Websites",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : "Scrape From Websites"
+    }, {
+      "id" : "600a43b1-d608-f0fb-6ed5-f3044a9f0bc3",
+      "name" : "text",
+      "display_width" : null,
+      "label" : "Card text",
+      "required" : false,
+      "locked" : false,
+      "type" : "richtext",
+      "default" : "<p><a href=\"https://www.wakeupdata.com/product-feed-crawl-scrape?hsLang=en\" rel=\"noopener\">Scrape specific data</a> f<span>rom your website and merge it to your product feed.</span><br><span>Do you have incomplete product information? No worries! Retrieve the missing attributes by extracting the data from your website and integrating it into your main feed.</span></p>"
+    }, {
+      "id" : "88e22dab-8b18-7b4b-4d01-54ecfcfe2bab",
+      "name" : "uniq_btn",
+      "display_width" : null,
+      "label" : "Unique Button Style",
+      "help_text" : "Gives the button a unique style - separate from the shared style set in the settings tab. <b>USE THIS SPARINGLY - IF AT ALL</b>",
+      "inline_help_text" : "<b>USE THIS SPARINGLY - IF AT ALL</b>",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "card_content.card_8.use_uniq_btn",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "cta-primary", "Primary" ], [ "cta-secondary", "Secondary" ], [ "cta-tertiary", "Tertiary" ], [ "cta-four", "four" ], [ "cta-five", "five" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice"
+    }, {
+      "id" : "ca84e901-42f0-1e6c-f6f9-574d3f17af68",
+      "name" : "use_uniq_btn",
+      "display_width" : null,
+      "label" : "Use Unique Button",
+      "help_text" : "Allows you to set a unique button style for the individual card - use sparingly",
+      "inline_help_text" : "",
+      "required" : false,
+      "locked" : false,
+      "display" : "checkbox",
+      "type" : "boolean",
+      "default" : false
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "type" : "group",
+    "default" : {
+      "heading" : "Scrape From Websites",
+      "text" : "<p><a href=\"https://www.wakeupdata.com/product-feed-crawl-scrape?hsLang=en\" rel=\"noopener\">Scrape specific data</a> f<span>rom your website and merge it to your product feed.</span><br><span>Do you have incomplete product information? No worries! Retrieve the missing attributes by extracting the data from your website and integrating it into your main feed.</span></p>",
+      "use_uniq_btn" : false
+    }
+  }, {
+    "id" : "88e10970-45e4-51e9-dc21-a6dc152dceb6",
+    "name" : "card_9",
+    "display_width" : null,
+    "label" : "Card 9",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "2b239e45-76e1-c06b-c83b-07511ab9e5f6",
+      "name" : "heading",
+      "display_width" : null,
+      "label" : "Card heading",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "placeholder" : "Access to feed experts",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : "Access to feed experts"
+    }, {
+      "id" : "94f3fd0c-cf42-52f6-cbcc-70995ee84fa3",
+      "name" : "text",
+      "display_width" : null,
+      "label" : "Card text",
+      "required" : false,
+      "locked" : false,
+      "type" : "richtext",
+      "default" : "<p>Get personalized support from our knowledgeable CSMs and take your business to new apexes with our monthly consultancy hours at half the cost. Sign up now and let us help you achieve your goals!</p>"
+    }, {
+      "id" : "4f96e0fa-84c3-fbff-a4ab-056a7dded92a",
+      "name" : "uniq_btn",
+      "display_width" : null,
+      "label" : "Unique Button Style",
+      "help_text" : "Gives the button a unique style - separate from the shared style set in the settings tab. <b>USE THIS SPARINGLY - IF AT ALL</b>",
+      "inline_help_text" : "<b>USE THIS SPARINGLY - IF AT ALL</b>",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "card_content.card_9.use_uniq_btn",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "cta-primary", "Primary" ], [ "cta-secondary", "Secondary" ], [ "cta-tertiary", "Tertiary" ], [ "cta-four", "four" ], [ "cta-five", "five" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice"
+    }, {
+      "id" : "606ac1f8-82c1-6589-6214-8725880f7d04",
+      "name" : "use_uniq_btn",
+      "display_width" : null,
+      "label" : "Use Unique Button",
+      "help_text" : "Allows you to set a unique button style for the individual card - use sparingly",
+      "inline_help_text" : "",
+      "required" : false,
+      "locked" : false,
+      "display" : "checkbox",
+      "type" : "boolean",
+      "default" : false
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "type" : "group",
+    "default" : {
+      "heading" : "Access to feed experts",
+      "text" : "<p>Get personalized support from our knowledgeable CSMs and take your business to new apexes with our monthly consultancy hours at half the cost. Sign up now and let us help you achieve your goals!</p>",
+      "use_uniq_btn" : false
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "type" : "group",
+  "default" : {
+    "card_1" : {
+      "heading" : "Near real-time data",
+      "text" : "<p>Ensure you always have fresh data in the channels you work with, with hourly runs for correct prices and stock.</p>",
+      "use_uniq_btn" : false
+    },
+    "card_2" : {
+      "heading" : "Product Search Ads",
+      "text" : "<p>Take up more SERP space with dynamic, product based <a href=\"https://www.wakeupdata.com/dynamic-google-text-ads?hsLang=en\" rel=\"noopener\">Google Search Ads</a>.</p>",
+      "use_uniq_btn" : false
+    },
+    "card_3" : {
+      "heading" : "Enrich Social Images",
+      "text" : "<p>Increase revenue from social channels by creating personalised content for all your products.</p>",
+      "use_uniq_btn" : false
+    },
+    "card_4" : {
+      "heading" : "Incremental Updates",
+      "text" : "<p>Update prices and stock before with our game-changing solution for ERP-based companies. Eliminate slow loading times and streamline inventory management, saving you time and money. &nbsp;</p>",
+      "use_uniq_btn" : false
+    },
+    "card_5" : {
+      "heading" : "Competitor Monitoring ",
+      "text" : "<p>Get insight into your <a href=\"https://www.wakeupdata.com/competitor-monitoring?hsLang=en\" rel=\"noopener\">competitors' pricing</a> strategies and use the data to enrich your feeds. <span>Use this information to increase / decrease bidding on your ads.</span></p>",
+      "use_uniq_btn" : false
+    },
+    "card_6" : {
+      "heading" : "Background Removal",
+      "text" : "<p>Save time with automated background removal on your product images.<br>Reduce rejection in Google Merchant Center with product images that follow Google’s guidelines. A one-time fee.</p>",
+      "use_uniq_btn" : false
+    },
+    "card_7" : {
+      "heading" : "Crawl Websites",
+      "text" : "<p><span>Looking to create a product </span><a href=\"https://www.wakeupdata.com/product-feed-crawl-scrape?hsLang=en\" rel=\"noopener\">feed from scratch</a>.<br><span>Our crawl tool makes it easy to collect product data from any shopping platform or website.</span><span>&nbsp;</span></p>",
+      "use_uniq_btn" : false
+    },
+    "card_8" : {
+      "heading" : "Scrape From Websites",
+      "text" : "<p><a href=\"https://www.wakeupdata.com/product-feed-crawl-scrape?hsLang=en\" rel=\"noopener\">Scrape specific data</a> f<span>rom your website and merge it to your product feed.</span><br><span>Do you have incomplete product information? No worries! Retrieve the missing attributes by extracting the data from your website and integrating it into your main feed.</span></p>",
+      "use_uniq_btn" : false
+    },
+    "card_9" : {
+      "heading" : "Access to feed experts",
+      "text" : "<p>Get personalized support from our knowledgeable CSMs and take your business to new apexes with our monthly consultancy hours at half the cost. Sign up now and let us help you achieve your goals!</p>",
+      "use_uniq_btn" : false
+    }
+  }
+}, {
+  "id" : "49977b50-d08a-0e7b-aa88-0b0220e03a90",
+  "name" : "settings",
+  "display_width" : null,
+  "label" : "Settings",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "4649a44b-9309-4383-438b-e9d784758edb",
+    "name" : "columns",
+    "display_width" : null,
+    "label" : "Column settings",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "c3d74915-482c-03fa-8901-03a7264f40f4",
+      "name" : "left_column_width",
+      "display_width" : null,
+      "label" : "Left column width",
+      "help_text" : "Make sure the sum of \"Left column width\" and \"Right column width\" are equal to or less than 12 if you want them to be next to eachother on desktop sizes.",
+      "inline_help_text" : "The number represents (n/12). E.g. 8 fills out 8 of 12 columns (66.666%)",
+      "required" : false,
+      "locked" : false,
+      "display" : "slider",
+      "min" : 0,
+      "max" : 12,
+      "step" : 1,
+      "type" : "number",
+      "default" : 8
+    }, {
+      "id" : "e69b7151-1ae8-f54d-5479-542c60d684fe",
+      "name" : "right_column_width",
+      "display_width" : null,
+      "label" : "Right column width",
+      "help_text" : "Make sure the sum of \"Left column width\" and \"Right column width\" are equal to or less than 12 if you want them to be next to eachother on desktop sizes.",
+      "inline_help_text" : "The number represents (n/12). E.g. 8 fills out 8 of 12 columns (66.666%)",
+      "required" : false,
+      "locked" : false,
+      "display" : "slider",
+      "min" : 0,
+      "max" : 12,
+      "step" : 1,
+      "type" : "number",
+      "default" : 4
+    }, {
+      "id" : "cf2a3340-c7b2-b431-e8cc-c3f0082c2c03",
+      "name" : "plan_addons_column",
+      "display_width" : null,
+      "label" : "Choose your plan/addons column (left)",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "a94f9432-c343-a7f6-da81-d61a3ba1d6a0",
+        "name" : "slider_form",
+        "display_width" : null,
+        "label" : "Slider form",
+        "required" : false,
+        "locked" : false,
+        "children" : [ {
+          "id" : "acd775c7-e572-bfe9-43f1-de93bea68555",
+          "name" : "choose_your_plan_form_padding",
+          "display_width" : null,
+          "label" : "Choose your plan form padding",
+          "help_text" : "This adds whitespace around the slider form section",
+          "required" : false,
+          "locked" : false,
+          "display" : "slider",
+          "min" : 0,
+          "max" : 200,
+          "step" : 1,
+          "suffix" : "px",
+          "type" : "number",
+          "default" : 40
+        }, {
+          "id" : "fd559b73-c45b-ef5a-cbef-ac70b4d182a0",
+          "name" : "slider_form_border_radius",
+          "display_width" : null,
+          "label" : "Slider form border radius",
+          "required" : false,
+          "locked" : false,
+          "display" : "slider",
+          "min" : 0,
+          "max" : 100,
+          "step" : 1,
+          "suffix" : "px",
+          "type" : "number",
+          "default" : 16
+        }, {
+          "id" : "a614cb1e-1116-5959-b223-d1b3d13899ca",
+          "name" : "slider_form_background_color",
+          "display_width" : null,
+          "label" : "Slider form background color",
+          "required" : false,
+          "locked" : false,
+          "type" : "color",
+          "default" : {
+            "color" : "#ffffff",
+            "opacity" : 100
+          }
+        }, {
+          "id" : "0035d12d-1dae-5ee6-b3d7-a75dc78d3e12",
+          "name" : "slider_range_color",
+          "display_width" : null,
+          "label" : "Slider range color",
+          "help_text" : "The color of the range slider (not the circle you drag)",
+          "required" : false,
+          "locked" : false,
+          "type" : "color",
+          "default" : {
+            "color" : "#005682",
+            "opacity" : 100
+          }
+        }, {
+          "id" : "40af9d63-7ca6-8c88-1be9-d622780d35a7",
+          "name" : "slider_range_color_2",
+          "display_width" : null,
+          "label" : "Slider range color 2",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : null,
+            "controlling_field_path" : "settings.columns.plan_addons_column.slider_form.gradient_slider",
+            "controlling_value_regex" : "true",
+            "property" : null,
+            "operator" : "EQUAL",
+            "access" : null
+          },
+          "type" : "color",
+          "default" : {
+            "color" : "#4bb2a3",
+            "opacity" : 100
+          }
+        }, {
+          "id" : "c5de104c-fc36-868a-e66f-f85bc9291968",
+          "name" : "gradient_slider",
+          "display_width" : null,
+          "label" : "Gradient slider range color",
+          "help_text" : "",
+          "required" : false,
+          "locked" : false,
+          "display" : "checkbox",
+          "type" : "boolean",
+          "default" : true
+        }, {
+          "id" : "e6cefb1b-3ba6-f401-bb4e-67e2bf2f8791",
+          "name" : "lines_color",
+          "display_width" : null,
+          "label" : "Plan lines color",
+          "help_text" : "The lines in and around the slider form - the border and the lines between the plan info such as the lines between \"Products/SKUs\" and \"Projects\".",
+          "required" : false,
+          "locked" : false,
+          "type" : "color",
+          "default" : {
+            "color" : "#d7e1e6",
+            "opacity" : 100
+          }
+        }, {
+          "id" : "4092fab1-c2df-f089-db64-4d540f875461",
+          "name" : "lines_thickness",
+          "display_width" : null,
+          "label" : "Plan lines thickness",
+          "help_text" : "The lines in and around the slider form - the border and the lines between the plan info such as the lines between \"Products/SKUs\" and \"Projects\".",
+          "required" : false,
+          "locked" : false,
+          "display" : "slider",
+          "min" : 1,
+          "max" : 5,
+          "step" : 1,
+          "suffix" : "px",
+          "type" : "number"
+        } ],
+        "tab" : "CONTENT",
+        "expanded" : false,
+        "type" : "group",
+        "default" : {
+          "choose_your_plan_form_padding" : 40,
+          "slider_form_border_radius" : 16,
+          "slider_form_background_color" : {
+            "color" : "#ffffff",
+            "opacity" : 100
+          },
+          "slider_range_color" : {
+            "color" : "#005682",
+            "opacity" : 100
+          },
+          "slider_range_color_2" : {
+            "color" : "#4bb2a3",
+            "opacity" : 100
+          },
+          "gradient_slider" : true,
+          "lines_color" : {
+            "color" : "#d7e1e6",
+            "opacity" : 100
+          }
+        }
+      }, {
+        "id" : "98e13f77-fc45-a533-60f4-7b5627cbed85",
+        "name" : "add_feat",
+        "display_width" : null,
+        "label" : "Additional Features (cards)",
+        "inline_help_text" : "<b>These styles are for every card.</b>\n",
+        "required" : false,
+        "locked" : false,
+        "children" : [ {
+          "id" : "e2ee845b-37af-b245-d733-75cb2da5373e",
+          "name" : "lines_color",
+          "display_width" : null,
+          "label" : "Add-on border color",
+          "help_text" : "Sets the color of the border of every add-on card.",
+          "required" : false,
+          "locked" : false,
+          "type" : "color",
+          "default" : {
+            "color" : "#d7e1e6",
+            "opacity" : 100
+          }
+        }, {
+          "id" : "bc6d6041-a6b7-5a41-adb2-f48b1c38aadc",
+          "name" : "bg_color",
+          "display_width" : null,
+          "label" : "Add-on background color",
+          "help_text" : "Sets the background color of every add-on card.",
+          "required" : false,
+          "locked" : false,
+          "type" : "color",
+          "default" : {
+            "color" : "#ffffff",
+            "opacity" : 100
+          }
+        }, {
+          "id" : "c8a9945b-8834-d3d7-2430-65c803db1142",
+          "name" : "text_color",
+          "display_width" : null,
+          "label" : "Add-on text color",
+          "help_text" : "Sets the text color of every add-on card.",
+          "inline_help_text" : "Leave this blank to use the set theme colors unless necessary",
+          "required" : false,
+          "locked" : false,
+          "type" : "color",
+          "default" : {
+            "color" : null,
+            "opacity" : null
+          }
+        }, {
+          "id" : "bf31f5f6-1d9f-8cbe-624b-26288216722e",
+          "name" : "padding",
+          "display_width" : null,
+          "label" : "Add-on padding",
+          "required" : false,
+          "locked" : false,
+          "display" : "slider",
+          "min" : 0,
+          "max" : 50,
+          "step" : 1,
+          "suffix" : "px",
+          "type" : "number",
+          "default" : 20
+        }, {
+          "id" : "25dbcdd5-21c2-b835-a9cd-805b336657f1",
+          "name" : "border_radius",
+          "display_width" : null,
+          "label" : "Add-on border radius",
+          "help_text" : "Sets the add-on card border-radius.",
+          "required" : false,
+          "locked" : false,
+          "display" : "slider",
+          "min" : 0,
+          "max" : 50,
+          "step" : 1,
+          "suffix" : "px",
+          "type" : "number",
+          "default" : 16
+        }, {
+          "id" : "d01a6a47-3426-dd47-0428-7d2053d545db",
+          "name" : "shadow",
+          "display_width" : null,
+          "label" : "Add-on drop shadow",
+          "required" : false,
+          "locked" : false,
+          "display" : "checkbox",
+          "type" : "boolean",
+          "default" : false
+        }, {
+          "id" : "1199dcb5-6173-6806-6288-7ced8457fea4",
+          "name" : "button_style",
+          "display_width" : null,
+          "label" : "Add-on button style",
+          "required" : false,
+          "locked" : false,
+          "display" : "select",
+          "choices" : [ [ "cta-primary", "Primary" ], [ "cta-secondary", "Secondary" ], [ "cta-tertiary", "Tertiary" ], [ "cta-four", "Four" ], [ "cta-five", "Five" ] ],
+          "multiple" : false,
+          "reordering_enabled" : true,
+          "preset" : null,
+          "type" : "choice",
+          "default" : "cta-five"
+        }, {
+          "id" : "d405fb6d-f344-5269-21fe-6ab28915e3d7",
+          "name" : "btn_padding_tb",
+          "display_width" : null,
+          "label" : "Add-on button padding (top/bottom)",
+          "help_text" : "Sets the space between the text and the top/bottom edges of the button",
+          "inline_help_text" : "Leave blank to use the padding set on the button style above",
+          "required" : false,
+          "locked" : false,
+          "display" : "slider",
+          "min" : 0,
+          "max" : 50,
+          "step" : 1,
+          "suffix" : "px",
+          "type" : "number"
+        }, {
+          "id" : "4ba62e52-6269-3afb-6fe0-96073281c435",
+          "name" : "btn_padding_lr",
+          "display_width" : null,
+          "label" : "Add-on button padding (left/right)",
+          "help_text" : "Sets the space between the text and the left/right edges of the button",
+          "inline_help_text" : "Leave blank if you want the button to be full width",
+          "required" : false,
+          "locked" : false,
+          "display" : "slider",
+          "min" : 0,
+          "max" : 50,
+          "step" : 1,
+          "suffix" : "px",
+          "type" : "number"
+        }, {
+          "id" : "40765d3c-251e-4cc8-e27b-9a54dadf44fa",
+          "name" : "center_btn",
+          "display_width" : null,
+          "label" : "Center button",
+          "help_text" : "Centers the add-on card button, will not do anything if left/right button padding is left blank",
+          "required" : false,
+          "locked" : false,
+          "display" : "checkbox",
+          "type" : "boolean",
+          "default" : false
+        } ],
+        "tab" : "CONTENT",
+        "expanded" : false,
+        "type" : "group",
+        "default" : {
+          "lines_color" : {
+            "color" : "#d7e1e6",
+            "opacity" : 100
+          },
+          "bg_color" : {
+            "color" : "#ffffff",
+            "opacity" : 100
+          },
+          "text_color" : {
+            "color" : null,
+            "opacity" : null
+          },
+          "padding" : 20,
+          "border_radius" : 16,
+          "shadow" : false,
+          "button_style" : "cta-five",
+          "center_btn" : false
+        }
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : false,
+      "type" : "group",
+      "default" : {
+        "slider_form" : {
+          "choose_your_plan_form_padding" : 40,
+          "slider_form_border_radius" : 16,
+          "slider_form_background_color" : {
+            "color" : "#ffffff",
+            "opacity" : 100
+          },
+          "slider_range_color" : {
+            "color" : "#005682",
+            "opacity" : 100
+          },
+          "slider_range_color_2" : {
+            "color" : "#4bb2a3",
+            "opacity" : 100
+          },
+          "gradient_slider" : true,
+          "lines_color" : {
+            "color" : "#d7e1e6",
+            "opacity" : 100
+          }
+        },
+        "add_feat" : {
+          "lines_color" : {
+            "color" : "#d7e1e6",
+            "opacity" : 100
+          },
+          "bg_color" : {
+            "color" : "#ffffff",
+            "opacity" : 100
+          },
+          "text_color" : {
+            "color" : null,
+            "opacity" : null
+          },
+          "padding" : 20,
+          "border_radius" : 16,
+          "shadow" : false,
+          "button_style" : "cta-five",
+          "center_btn" : false
+        }
+      }
+    }, {
+      "id" : "1682bbf5-dc73-ba1a-8aff-b41412923a84",
+      "name" : "final_price_column",
+      "display_width" : null,
+      "label" : "Final price column (right)",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "981bcd6b-7e22-7960-ffd1-8313d0f784be",
+        "name" : "make_right_column_sticky",
+        "display_width" : null,
+        "label" : "Make right column sticky?",
+        "help_text" : "Sticky elements follow the screen on scroll (within their containers)",
+        "required" : false,
+        "locked" : false,
+        "display" : "checkbox",
+        "type" : "boolean",
+        "default" : true
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : false,
+      "type" : "group",
+      "default" : {
+        "make_right_column_sticky" : true
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "type" : "group",
+    "default" : {
+      "left_column_width" : 8,
+      "right_column_width" : 4,
+      "plan_addons_column" : {
+        "slider_form" : {
+          "choose_your_plan_form_padding" : 40,
+          "slider_form_border_radius" : 16,
+          "slider_form_background_color" : {
+            "color" : "#ffffff",
+            "opacity" : 100
+          },
+          "slider_range_color" : {
+            "color" : "#005682",
+            "opacity" : 100
+          },
+          "slider_range_color_2" : {
+            "color" : "#4bb2a3",
+            "opacity" : 100
+          },
+          "gradient_slider" : true,
+          "lines_color" : {
+            "color" : "#d7e1e6",
+            "opacity" : 100
+          }
+        },
+        "add_feat" : {
+          "lines_color" : {
+            "color" : "#d7e1e6",
+            "opacity" : 100
+          },
+          "bg_color" : {
+            "color" : "#ffffff",
+            "opacity" : 100
+          },
+          "text_color" : {
+            "color" : null,
+            "opacity" : null
+          },
+          "padding" : 20,
+          "border_radius" : 16,
+          "shadow" : false,
+          "button_style" : "cta-five",
+          "center_btn" : false
+        }
+      },
+      "final_price_column" : {
+        "make_right_column_sticky" : true
+      }
+    }
+  }, {
+    "id" : "0135880e-f641-c485-9408-690060c7985c",
+    "name" : "mobile_settings",
+    "display_width" : null,
+    "label" : "Mobile settings",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "59e8a4a4-e6c9-1a70-9a03-d7535ea11bed",
+      "name" : "change_order_on_mobile",
+      "display_width" : null,
+      "label" : "Change order on mobile?",
+      "required" : false,
+      "locked" : false,
+      "display" : "checkbox",
+      "type" : "boolean",
+      "default" : true
+    }, {
+      "id" : "1d91c1c0-22f4-5eaa-e953-342d79837b4e",
+      "name" : "mobile_left_column_ordering",
+      "display_width" : null,
+      "label" : "Mobile left column ordering",
+      "required" : false,
+      "locked" : false,
+      "display" : "slider",
+      "min" : 0,
+      "max" : 2,
+      "step" : 1,
+      "type" : "number",
+      "default" : 2
+    }, {
+      "id" : "76c595a9-8923-9fc6-1452-266dc8303884",
+      "name" : "mobile_right_column_ordering",
+      "display_width" : null,
+      "label" : "Mobile right column ordering",
+      "required" : false,
+      "locked" : false,
+      "display" : "slider",
+      "min" : 0,
+      "max" : 2,
+      "step" : 1,
+      "type" : "number",
+      "default" : 1
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "type" : "group",
+    "default" : {
+      "change_order_on_mobile" : true,
+      "mobile_left_column_ordering" : 2,
+      "mobile_right_column_ordering" : 1
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "type" : "group",
+  "default" : {
+    "columns" : {
+      "left_column_width" : 8,
+      "right_column_width" : 4,
+      "plan_addons_column" : {
+        "slider_form" : {
+          "choose_your_plan_form_padding" : 40,
+          "slider_form_border_radius" : 16,
+          "slider_form_background_color" : {
+            "color" : "#ffffff",
+            "opacity" : 100
+          },
+          "slider_range_color" : {
+            "color" : "#005682",
+            "opacity" : 100
+          },
+          "slider_range_color_2" : {
+            "color" : "#4bb2a3",
+            "opacity" : 100
+          },
+          "gradient_slider" : true,
+          "lines_color" : {
+            "color" : "#d7e1e6",
+            "opacity" : 100
+          }
+        },
+        "add_feat" : {
+          "lines_color" : {
+            "color" : "#d7e1e6",
+            "opacity" : 100
+          },
+          "bg_color" : {
+            "color" : "#ffffff",
+            "opacity" : 100
+          },
+          "text_color" : {
+            "color" : null,
+            "opacity" : null
+          },
+          "padding" : 20,
+          "border_radius" : 16,
+          "shadow" : false,
+          "button_style" : "cta-five",
+          "center_btn" : false
+        }
+      },
+      "final_price_column" : {
+        "make_right_column_sticky" : true
+      }
+    },
+    "mobile_settings" : {
+      "change_order_on_mobile" : true,
+      "mobile_left_column_ordering" : 2,
+      "mobile_right_column_ordering" : 1
+    }
+  }
+}, {
+  "id" : "a1a82e16-a13e-7485-6418-cba7b220ffa9",
+  "name" : "row_settings",
+  "display_width" : null,
+  "label" : "///// Row Settings",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "96e72d20-8e67-1f61-2e50-104d86cb7c85",
+    "name" : "bg_color",
+    "display_width" : null,
+    "label" : "Background Color:",
+    "help_text" : "Set the background color of the row here.",
+    "required" : false,
+    "locked" : false,
+    "type" : "color",
+    "default" : {
+      "color" : "#444444",
+      "opacity" : 100
+    }
+  }, {
+    "id" : "0da399f9-842b-1672-4772-e61be1db1002",
+    "name" : "content_width",
+    "display_width" : null,
+    "label" : "Content Width:",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "container", "Standard" ], [ "container-fluid", "Full" ], [ "container-slim", "Slim" ], [ "custom", "Custom" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "default" : "container"
+  }, {
+    "id" : "c1ffc04f-47bf-b88f-5618-da31a4c6a0e7",
+    "name" : "set_width",
+    "display_width" : null,
+    "label" : "Set Width:",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "0da399f9-842b-1672-4772-e61be1db1002",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "custom",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "slider",
+    "min" : 100,
+    "max" : 1600,
+    "step" : 1,
+    "type" : "number",
+    "default" : 600
+  }, {
+    "id" : "040090ca-d14e-6990-200f-ae18776a25e0",
+    "name" : "shadow",
+    "display_width" : null,
+    "label" : "Do you want a subtle shadow?",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "none", "Nope. I'm cool." ], [ "inner", "Inner" ], [ "outer", "Outer" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "default" : "none"
+  }, {
+    "id" : "62752940-d1fa-bef0-f8a2-ab32e1f97bb8",
+    "name" : "shadow_color",
+    "display_width" : null,
+    "label" : "Shadow Color:",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "040090ca-d14e-6990-200f-ae18776a25e0",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "none",
+      "property" : null,
+      "operator" : "NOT_EQUAL",
+      "access" : null
+    },
+    "type" : "color",
+    "default" : {
+      "color" : "#000000",
+      "opacity" : 20
+    }
+  }, {
+    "id" : "2cea001a-56f7-707c-e42d-e4b7921bef5c",
+    "name" : "shadow_size",
+    "display_width" : null,
+    "label" : "Shadow Size:",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "040090ca-d14e-6990-200f-ae18776a25e0",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "none",
+      "property" : null,
+      "operator" : "NOT_EQUAL",
+      "access" : null
+    },
+    "display" : "slider",
+    "min" : 1,
+    "max" : 100,
+    "step" : 1,
+    "type" : "number",
+    "default" : 20
+  }, {
+    "id" : "78985da9-a7a7-62e8-d997-532da082d9b3",
+    "name" : "adv_settings",
+    "display_width" : null,
+    "label" : "///// Spacing Options",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "1550ef3f-c6d7-a168-fc7f-763c8346199e",
+      "name" : "padding_top",
+      "display_width" : null,
+      "label" : "Padding Top (Desktop):",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "placeholder" : "Please Select",
+      "choices" : [ [ "0px", "None" ], [ "10px", "XX-Small" ], [ "25px", "X-Small" ], [ "50px", "Small" ], [ "100px", "Medium" ], [ "150px", "Large" ], [ "200px", "X-Large" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "default" : "50px"
+    }, {
+      "id" : "42301c83-a9d0-9355-751b-77175e19acea",
+      "name" : "padding_bottom",
+      "display_width" : null,
+      "label" : "Padding Bottom (Desktop):",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "placeholder" : "Please Select",
+      "choices" : [ [ "0px", "None" ], [ "10px", "XX-Small" ], [ "25px", "X-Small" ], [ "50px", "Small" ], [ "100px", "Medium" ], [ "150px", "Large" ], [ "200px", "X-Large" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "default" : "50px"
+    }, {
+      "id" : "4cd8dd85-f0d0-7f3d-7a24-234da77c36a0",
+      "name" : "padding_top_tablet",
+      "display_width" : null,
+      "label" : "Padding Top (Tablet):",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "placeholder" : "Please Select",
+      "choices" : [ [ "0px", "None" ], [ "10px", "XX-Small" ], [ "25px", "X-Small" ], [ "50px", "Small" ], [ "100px", "Medium" ], [ "150px", "Large" ], [ "200px", "X-Large" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "default" : "50px"
+    }, {
+      "id" : "5ed90513-9562-836e-b7c4-d88bdd8b1aa1",
+      "name" : "padding_bottom_tablet",
+      "display_width" : null,
+      "label" : "Padding Bottom (Tablet):",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "placeholder" : "Please Select",
+      "choices" : [ [ "0px", "None" ], [ "10px", "XX-Small" ], [ "25px", "X-Small" ], [ "50px", "Small" ], [ "100px", "Medium" ], [ "150px", "Large" ], [ "200px", "X-Large" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "default" : "50px"
+    }, {
+      "id" : "a77892e1-d984-f995-abe3-2abfda2de7d9",
+      "name" : "padding_top_mobile",
+      "display_width" : null,
+      "label" : "Padding Top (Mobile):",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "placeholder" : "Please Select",
+      "choices" : [ [ "0px", "None" ], [ "10px", "XX-Small" ], [ "25px", "X-Small" ], [ "50px", "Small" ], [ "100px", "Medium" ], [ "150px", "Large" ], [ "200px", "X-Large" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "default" : "50px"
+    }, {
+      "id" : "e4c7d5b8-9d6e-20e8-0a13-1697164cb5ea",
+      "name" : "padding_bottom_mobile",
+      "display_width" : null,
+      "label" : "Padding Bottom (Mobile):",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "placeholder" : "Please Select",
+      "choices" : [ [ "0px", "None" ], [ "10px", "XX-Small" ], [ "25px", "X-Small" ], [ "50px", "Small" ], [ "100px", "Medium" ], [ "150px", "Large" ], [ "200px", "X-Large" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "default" : "50px"
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "type" : "group",
+    "default" : {
+      "padding_top" : "50px",
+      "padding_bottom" : "50px",
+      "padding_top_tablet" : "50px",
+      "padding_bottom_tablet" : "50px",
+      "padding_top_mobile" : "50px",
+      "padding_bottom_mobile" : "50px"
+    }
+  }, {
+    "id" : "7465415b-8687-2400-5167-33f847288710",
+    "name" : "code",
+    "display_width" : null,
+    "label" : "///// Code (The Nerdy Stuff)",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "f1e81c7f-b1af-b1c6-aa59-8e6cbecc7b26",
+      "name" : "section_id",
+      "display_width" : null,
+      "label" : "CSS ID:",
+      "help_text" : "This sets an ID on the row in case you'd like to use an anchor tag and have the page scroll to this section.",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : ""
+    }, {
+      "id" : "05534d04-aab5-acce-8c63-663ea4e68128",
+      "name" : "section_class",
+      "display_width" : null,
+      "label" : "CSS Class:",
+      "help_text" : "This is helpful if you know just a enough of CSS to be dangerous.  Make sure that class names don't have spaces.  ",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : ""
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "type" : "group",
+    "default" : {
+      "section_id" : "",
+      "section_class" : ""
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "type" : "group",
+  "default" : {
+    "bg_color" : {
+      "color" : "#444444",
+      "opacity" : 100
+    },
+    "content_width" : "container",
+    "set_width" : 600,
+    "shadow" : "none",
+    "shadow_color" : {
+      "color" : "#000000",
+      "opacity" : 20
+    },
+    "shadow_size" : 20,
+    "adv_settings" : {
+      "padding_top" : "50px",
+      "padding_bottom" : "50px",
+      "padding_top_tablet" : "50px",
+      "padding_bottom_tablet" : "50px",
+      "padding_top_mobile" : "50px",
+      "padding_bottom_mobile" : "50px"
+    },
+    "code" : {
+      "section_id" : "",
+      "section_class" : ""
+    }
+  }
+} ]

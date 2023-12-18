@@ -1,0 +1,724 @@
+[ {
+  "id" : "148024a3-96b2-5f51-5cf4-5cefe9855277",
+  "name" : "table_columns",
+  "display_width" : null,
+  "label" : "How many columns do you want?",
+  "required" : false,
+  "locked" : false,
+  "display" : "select",
+  "placeholder" : "",
+  "choices" : [ [ "one", "Just one" ], [ "two", "Two" ], [ "three", "Three" ], [ "four", "Four" ], [ "five", "Five" ], [ "six", "Six" ], [ "seven", "Seven" ] ],
+  "multiple" : false,
+  "reordering_enabled" : true,
+  "preset" : null,
+  "type" : "choice",
+  "default" : "three"
+}, {
+  "id" : "4e063116-d0f6-6487-75fc-d92e7d8ac1f1",
+  "name" : "column_titles",
+  "display_width" : null,
+  "label" : "Column titles",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "736c8179-4751-563e-8149-b929511ee5a9",
+    "name" : "col_1",
+    "display_width" : null,
+    "label" : "Column 1 Title",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "default" : "<h6>Title 1</h6>"
+  }, {
+    "id" : "fc85603c-afa2-8ed6-1784-339160094e86",
+    "name" : "col_2",
+    "display_width" : null,
+    "label" : "Column 2 Title",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "table_columns",
+      "controlling_value_regex" : "\\b(?:two|three|four|five|six|seven)\\b",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "type" : "richtext",
+    "default" : "<p style=\"text-align: center;\">WakeupData</p>"
+  }, {
+    "id" : "189f1b62-b9a9-098d-d454-22a049c454a4",
+    "name" : "col_3",
+    "display_width" : null,
+    "label" : "Column 3 Title",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "table_columns",
+      "controlling_value_regex" : "\\b(?:three|four|five|six|seven)\\b",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "type" : "richtext",
+    "default" : "<p style=\"text-align: center;\">Title 3</p>"
+  }, {
+    "id" : "ce0de86b-2944-8ef1-4864-d338f819efd0",
+    "name" : "col_4",
+    "display_width" : null,
+    "label" : "Column 4 Title",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "table_columns",
+      "controlling_value_regex" : "\\b(?:four|five|six|seven)\\b",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "type" : "richtext",
+    "default" : "<p style=\"text-align: center;\">Title 4</p>"
+  }, {
+    "id" : "624e77a1-875e-45f5-bedc-9ec39ffcf655",
+    "name" : "col_5",
+    "display_width" : null,
+    "label" : "Column 5 Title",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "table_columns",
+      "controlling_value_regex" : "\\b(?:five|six|seven)\\b",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "type" : "richtext",
+    "default" : "<p style=\"text-align: center;\">Title 5</p>"
+  }, {
+    "id" : "8699ae53-34a8-f72b-116a-f71a1158a405",
+    "name" : "col_6",
+    "display_width" : null,
+    "label" : "Column 6 Title",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "table_columns",
+      "controlling_value_regex" : "\\b(?:six|seven)\\b",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "type" : "richtext",
+    "default" : "<p style=\"text-align: center;\">Title 6</p>"
+  }, {
+    "id" : "a7d92654-58e0-bc4f-1059-fe4d4e234751",
+    "name" : "col_7",
+    "display_width" : null,
+    "label" : "Column 7 Title",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "table_columns",
+      "controlling_value_regex" : "\\b(?:seven)\\b",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "type" : "richtext",
+    "default" : "<p style=\"text-align: center;\">Title 7</p>"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "type" : "group",
+  "default" : {
+    "col_1" : "<h6>Title 1</h6>",
+    "col_2" : "<p style=\"text-align: center;\">WakeupData</p>",
+    "col_3" : "<p style=\"text-align: center;\">Title 3</p>",
+    "col_4" : "<p style=\"text-align: center;\">Title 4</p>",
+    "col_5" : "<p style=\"text-align: center;\">Title 5</p>",
+    "col_6" : "<p style=\"text-align: center;\">Title 6</p>",
+    "col_7" : "<p style=\"text-align: center;\">Title 7</p>"
+  }
+}, {
+  "id" : "ae3b857f-9ae3-2512-c4cc-2faf854a2c9f",
+  "name" : "content",
+  "display_width" : null,
+  "label" : "Row content",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 1,
+    "max" : 100,
+    "sorting_label_field" : "b9b5c172-1ce3-4e55-c1c1-e9cf826475f7",
+    "default" : 1
+  },
+  "children" : [ {
+    "id" : "b9b5c172-1ce3-4e55-c1c1-e9cf826475f7",
+    "name" : "col_1",
+    "display_width" : null,
+    "label" : "Column 1 Content",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "default" : "<p><strong>Content</strong></p>"
+  }, {
+    "id" : "27158969-2b74-2b8f-1279-49ccf917c498",
+    "name" : "col_2",
+    "display_width" : null,
+    "label" : "Column 2 Content",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "table_columns",
+      "controlling_value_regex" : "\\b(?:two|three|four|five|six|seven)\\b",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "type" : "richtext",
+    "default" : "<p style=\"text-align: center;\"><span data-hs-icon-hubl=\"true\" style=\"display: inline-block; vertical-align: middle; fill: #26E766;\">{% icon icon_set=\"fontawesome-5.14.0\" name=\"Check\" style=\"SOLID\" height=\"20\" purpose=\"decorative\" title=\"Check icon\" %}</span><span data-hs-icon-hubl=\"true\" style=\"display: inline-block; vertical-align: middle; fill: #999999;\">{% icon icon_set=\"fontawesome-6.4.2\" name=\"Xmark\" style=\"SOLID\" height=\"24\" purpose=\"decorative\" title=\"Xmark icon\" %}</span></p>"
+  }, {
+    "id" : "7c868b32-b6a5-d014-9a81-7ea3dc1596f3",
+    "name" : "col_3",
+    "display_width" : null,
+    "label" : "Column 3 Content",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "table_columns",
+      "controlling_value_regex" : "\\b(?:three|four|five|six|seven)\\b",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "type" : "richtext",
+    "default" : "<p style=\"text-align: center;\"><span data-hs-icon-hubl=\"true\" style=\"display: inline-block; vertical-align: middle; fill: #26E766;\">{% icon icon_set=\"fontawesome-5.14.0\" name=\"Check\" style=\"SOLID\" height=\"20\" purpose=\"decorative\" title=\"Check icon\" %}</span><span data-hs-icon-hubl=\"true\" style=\"display: inline-block; vertical-align: middle; fill: #999999;\">{% icon icon_set=\"fontawesome-6.4.2\" name=\"Xmark\" style=\"SOLID\" height=\"24\" purpose=\"decorative\" title=\"Xmark icon\" %}</span></p>"
+  }, {
+    "id" : "f600abb3-ca59-dd78-a656-2cd236aa6ded",
+    "name" : "col_4",
+    "display_width" : null,
+    "label" : "Column 4 Content",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "table_columns",
+      "controlling_value_regex" : "\\b(?:four|five|six|seven)\\b",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "type" : "richtext",
+    "default" : "<p style=\"text-align: center;\"><span data-hs-icon-hubl=\"true\" style=\"display: inline-block; vertical-align: middle; fill: #26E766;\">{% icon icon_set=\"fontawesome-5.14.0\" name=\"Check\" style=\"SOLID\" height=\"20\" purpose=\"decorative\" title=\"Check icon\" %}</span><span data-hs-icon-hubl=\"true\" style=\"display: inline-block; vertical-align: middle; fill: #999999;\">{% icon icon_set=\"fontawesome-6.4.2\" name=\"Xmark\" style=\"SOLID\" height=\"24\" purpose=\"decorative\" title=\"Xmark icon\" %}</span></p>"
+  }, {
+    "id" : "130584f0-75e2-6fe9-2910-ba52090f6cc1",
+    "name" : "col_5",
+    "display_width" : null,
+    "label" : "Column 5 Content",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "table_columns",
+      "controlling_value_regex" : "\\b(?:five|six|seven)\\b",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "type" : "richtext",
+    "default" : "<p style=\"text-align: center;\"><span data-hs-icon-hubl=\"true\" style=\"display: inline-block; vertical-align: middle; fill: #26E766;\">{% icon icon_set=\"fontawesome-5.14.0\" name=\"Check\" style=\"SOLID\" height=\"20\" purpose=\"decorative\" title=\"Check icon\" %}</span><span data-hs-icon-hubl=\"true\" style=\"display: inline-block; vertical-align: middle; fill: #999999;\">{% icon icon_set=\"fontawesome-6.4.2\" name=\"Xmark\" style=\"SOLID\" height=\"24\" purpose=\"decorative\" title=\"Xmark icon\" %}</span></p>"
+  }, {
+    "id" : "6495b11a-bc50-acf7-cc1b-d65198eef863",
+    "name" : "col_6",
+    "display_width" : null,
+    "label" : "Column 6 Content",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "table_columns",
+      "controlling_value_regex" : "\\b(?:six|seven)\\b",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "type" : "richtext",
+    "default" : "<p style=\"text-align: center;\"><span data-hs-icon-hubl=\"true\" style=\"display: inline-block; vertical-align: middle; fill: #26E766;\">{% icon icon_set=\"fontawesome-5.14.0\" name=\"Check\" style=\"SOLID\" height=\"20\" purpose=\"decorative\" title=\"Check icon\" %}</span><span data-hs-icon-hubl=\"true\" style=\"display: inline-block; vertical-align: middle; fill: #999999;\">{% icon icon_set=\"fontawesome-6.4.2\" name=\"Xmark\" style=\"SOLID\" height=\"24\" purpose=\"decorative\" title=\"Xmark icon\" %}</span></p>"
+  }, {
+    "id" : "6d888c07-66a8-c925-090f-29f32a393f24",
+    "name" : "col_7",
+    "display_width" : null,
+    "label" : "Column 7 Content",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "table_columns",
+      "controlling_value_regex" : "\\b(?:seven)\\b",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "type" : "richtext",
+    "default" : "<p style=\"text-align: center;\"><span data-hs-icon-hubl=\"true\" style=\"display: inline-block; vertical-align: middle; fill: #26E766;\">{% icon icon_set=\"fontawesome-5.14.0\" name=\"Check\" style=\"SOLID\" height=\"20\" purpose=\"decorative\" title=\"Check icon\" %}</span><span data-hs-icon-hubl=\"true\" style=\"display: inline-block; vertical-align: middle; fill: #999999;\">{% icon icon_set=\"fontawesome-6.4.2\" name=\"Xmark\" style=\"SOLID\" height=\"24\" purpose=\"decorative\" title=\"Xmark icon\" %}</span></p>"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "type" : "group",
+  "default" : [ {
+    "col_1" : "<p><strong>Content</strong></p>",
+    "col_2" : "<p style=\"text-align: center;\"><span data-hs-icon-hubl=\"true\" style=\"display: inline-block; vertical-align: middle; fill: #26E766;\">{% icon icon_set=\"fontawesome-5.14.0\" name=\"Check\" style=\"SOLID\" height=\"20\" purpose=\"decorative\" title=\"Check icon\" %}</span><span data-hs-icon-hubl=\"true\" style=\"display: inline-block; vertical-align: middle; fill: #999999;\">{% icon icon_set=\"fontawesome-6.4.2\" name=\"Xmark\" style=\"SOLID\" height=\"24\" purpose=\"decorative\" title=\"Xmark icon\" %}</span></p>",
+    "col_3" : "<p style=\"text-align: center;\"><span data-hs-icon-hubl=\"true\" style=\"display: inline-block; vertical-align: middle; fill: #26E766;\">{% icon icon_set=\"fontawesome-5.14.0\" name=\"Check\" style=\"SOLID\" height=\"20\" purpose=\"decorative\" title=\"Check icon\" %}</span><span data-hs-icon-hubl=\"true\" style=\"display: inline-block; vertical-align: middle; fill: #999999;\">{% icon icon_set=\"fontawesome-6.4.2\" name=\"Xmark\" style=\"SOLID\" height=\"24\" purpose=\"decorative\" title=\"Xmark icon\" %}</span></p>",
+    "col_4" : "<p style=\"text-align: center;\"><span data-hs-icon-hubl=\"true\" style=\"display: inline-block; vertical-align: middle; fill: #26E766;\">{% icon icon_set=\"fontawesome-5.14.0\" name=\"Check\" style=\"SOLID\" height=\"20\" purpose=\"decorative\" title=\"Check icon\" %}</span><span data-hs-icon-hubl=\"true\" style=\"display: inline-block; vertical-align: middle; fill: #999999;\">{% icon icon_set=\"fontawesome-6.4.2\" name=\"Xmark\" style=\"SOLID\" height=\"24\" purpose=\"decorative\" title=\"Xmark icon\" %}</span></p>",
+    "col_5" : "<p style=\"text-align: center;\"><span data-hs-icon-hubl=\"true\" style=\"display: inline-block; vertical-align: middle; fill: #26E766;\">{% icon icon_set=\"fontawesome-5.14.0\" name=\"Check\" style=\"SOLID\" height=\"20\" purpose=\"decorative\" title=\"Check icon\" %}</span><span data-hs-icon-hubl=\"true\" style=\"display: inline-block; vertical-align: middle; fill: #999999;\">{% icon icon_set=\"fontawesome-6.4.2\" name=\"Xmark\" style=\"SOLID\" height=\"24\" purpose=\"decorative\" title=\"Xmark icon\" %}</span></p>",
+    "col_6" : "<p style=\"text-align: center;\"><span data-hs-icon-hubl=\"true\" style=\"display: inline-block; vertical-align: middle; fill: #26E766;\">{% icon icon_set=\"fontawesome-5.14.0\" name=\"Check\" style=\"SOLID\" height=\"20\" purpose=\"decorative\" title=\"Check icon\" %}</span><span data-hs-icon-hubl=\"true\" style=\"display: inline-block; vertical-align: middle; fill: #999999;\">{% icon icon_set=\"fontawesome-6.4.2\" name=\"Xmark\" style=\"SOLID\" height=\"24\" purpose=\"decorative\" title=\"Xmark icon\" %}</span></p>",
+    "col_7" : "<p style=\"text-align: center;\"><span data-hs-icon-hubl=\"true\" style=\"display: inline-block; vertical-align: middle; fill: #26E766;\">{% icon icon_set=\"fontawesome-5.14.0\" name=\"Check\" style=\"SOLID\" height=\"20\" purpose=\"decorative\" title=\"Check icon\" %}</span><span data-hs-icon-hubl=\"true\" style=\"display: inline-block; vertical-align: middle; fill: #999999;\">{% icon icon_set=\"fontawesome-6.4.2\" name=\"Xmark\" style=\"SOLID\" height=\"24\" purpose=\"decorative\" title=\"Xmark icon\" %}</span></p>"
+  } ]
+}, {
+  "id" : "1a6f9b01-3e35-6378-36bf-f0134f927ef7",
+  "name" : "column_settings",
+  "display_width" : null,
+  "label" : "Column settings",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "14c7e531-20c2-612b-c5f6-d58c29776b91",
+    "name" : "first_column",
+    "display_width" : null,
+    "label" : "First column",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "07eb1f96-4afe-3aaa-2357-4ee08bbc03e1",
+      "name" : "uniq_first_col",
+      "display_width" : null,
+      "label" : "Unique first column",
+      "required" : false,
+      "locked" : false,
+      "display" : "checkbox",
+      "type" : "boolean",
+      "default" : true
+    }, {
+      "id" : "7fb295cf-5798-55d2-e502-e238288870e1",
+      "name" : "title_bg_color_1",
+      "display_width" : null,
+      "label" : "First column title background color",
+      "help_text" : "Sets the background color of the first column title",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "column_settings.first_column.uniq_first_col",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "color",
+      "default" : {
+        "color" : "#FFFFFF",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "cd51ac40-2bf7-634e-f45f-e507bf69499a",
+      "name" : "title_text_color_1",
+      "display_width" : null,
+      "label" : "First column title text color",
+      "help_text" : "Sets the text color of the first column title",
+      "inline_help_text" : "Leave blank unless necessary",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "column_settings.first_column.uniq_first_col",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "color",
+      "default" : {
+        "color" : null,
+        "opacity" : null
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "type" : "group",
+    "default" : {
+      "uniq_first_col" : true,
+      "title_bg_color_1" : {
+        "color" : "#FFFFFF",
+        "opacity" : 100
+      },
+      "title_text_color_1" : {
+        "color" : null,
+        "opacity" : null
+      }
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "type" : "group",
+  "default" : {
+    "first_column" : {
+      "uniq_first_col" : true,
+      "title_bg_color_1" : {
+        "color" : "#FFFFFF",
+        "opacity" : 100
+      },
+      "title_text_color_1" : {
+        "color" : null,
+        "opacity" : null
+      }
+    }
+  }
+}, {
+  "id" : "a1a82e16-a13e-7485-6418-cba7b220ffa9",
+  "name" : "row_settings",
+  "display_width" : null,
+  "label" : "///// Row Settings",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "96e72d20-8e67-1f61-2e50-104d86cb7c85",
+    "name" : "bg_color",
+    "display_width" : null,
+    "label" : "Background Color:",
+    "help_text" : "Set the background color of the row here.",
+    "required" : false,
+    "locked" : false,
+    "type" : "color",
+    "default" : {
+      "color" : "#444444",
+      "opacity" : 100
+    }
+  }, {
+    "id" : "0da399f9-842b-1672-4772-e61be1db1002",
+    "name" : "content_width",
+    "display_width" : null,
+    "label" : "Content Width:",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "container", "Standard" ], [ "container-fluid", "Full" ], [ "container-slim", "Slim" ], [ "custom", "Custom" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "default" : "container"
+  }, {
+    "id" : "c1ffc04f-47bf-b88f-5618-da31a4c6a0e7",
+    "name" : "set_width",
+    "display_width" : null,
+    "label" : "Set Width:",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "0da399f9-842b-1672-4772-e61be1db1002",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "custom",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "slider",
+    "min" : 100,
+    "max" : 1600,
+    "step" : 1,
+    "type" : "number",
+    "default" : 600
+  }, {
+    "id" : "040090ca-d14e-6990-200f-ae18776a25e0",
+    "name" : "shadow",
+    "display_width" : null,
+    "label" : "Do you want a subtle shadow?",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "none", "Nope. I'm cool." ], [ "inner", "Inner" ], [ "outer", "Outer" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "default" : "none"
+  }, {
+    "id" : "62752940-d1fa-bef0-f8a2-ab32e1f97bb8",
+    "name" : "shadow_color",
+    "display_width" : null,
+    "label" : "Shadow Color:",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "040090ca-d14e-6990-200f-ae18776a25e0",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "none",
+      "property" : null,
+      "operator" : "NOT_EQUAL",
+      "access" : null
+    },
+    "type" : "color",
+    "default" : {
+      "color" : "#000000",
+      "opacity" : 20
+    }
+  }, {
+    "id" : "2cea001a-56f7-707c-e42d-e4b7921bef5c",
+    "name" : "shadow_size",
+    "display_width" : null,
+    "label" : "Shadow Size:",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "040090ca-d14e-6990-200f-ae18776a25e0",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "none",
+      "property" : null,
+      "operator" : "NOT_EQUAL",
+      "access" : null
+    },
+    "display" : "slider",
+    "min" : 1,
+    "max" : 100,
+    "step" : 1,
+    "type" : "number",
+    "default" : 20
+  }, {
+    "id" : "78985da9-a7a7-62e8-d997-532da082d9b3",
+    "name" : "adv_settings",
+    "display_width" : null,
+    "label" : "///// Spacing Options",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "1550ef3f-c6d7-a168-fc7f-763c8346199e",
+      "name" : "padding_top",
+      "display_width" : null,
+      "label" : "Padding Top (Desktop):",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "placeholder" : "Please Select",
+      "choices" : [ [ "0px", "None" ], [ "10px", "XX-Small" ], [ "25px", "X-Small" ], [ "50px", "Small" ], [ "100px", "Medium" ], [ "150px", "Large" ], [ "200px", "X-Large" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "default" : "50px"
+    }, {
+      "id" : "42301c83-a9d0-9355-751b-77175e19acea",
+      "name" : "padding_bottom",
+      "display_width" : null,
+      "label" : "Padding Bottom (Desktop):",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "placeholder" : "Please Select",
+      "choices" : [ [ "0px", "None" ], [ "10px", "XX-Small" ], [ "25px", "X-Small" ], [ "50px", "Small" ], [ "100px", "Medium" ], [ "150px", "Large" ], [ "200px", "X-Large" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "default" : "50px"
+    }, {
+      "id" : "4cd8dd85-f0d0-7f3d-7a24-234da77c36a0",
+      "name" : "padding_top_tablet",
+      "display_width" : null,
+      "label" : "Padding Top (Tablet):",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "placeholder" : "Please Select",
+      "choices" : [ [ "0px", "None" ], [ "10px", "XX-Small" ], [ "25px", "X-Small" ], [ "50px", "Small" ], [ "100px", "Medium" ], [ "150px", "Large" ], [ "200px", "X-Large" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "default" : "50px"
+    }, {
+      "id" : "5ed90513-9562-836e-b7c4-d88bdd8b1aa1",
+      "name" : "padding_bottom_tablet",
+      "display_width" : null,
+      "label" : "Padding Bottom (Tablet):",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "placeholder" : "Please Select",
+      "choices" : [ [ "0px", "None" ], [ "10px", "XX-Small" ], [ "25px", "X-Small" ], [ "50px", "Small" ], [ "100px", "Medium" ], [ "150px", "Large" ], [ "200px", "X-Large" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "default" : "50px"
+    }, {
+      "id" : "a77892e1-d984-f995-abe3-2abfda2de7d9",
+      "name" : "padding_top_mobile",
+      "display_width" : null,
+      "label" : "Padding Top (Mobile):",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "placeholder" : "Please Select",
+      "choices" : [ [ "0px", "None" ], [ "10px", "XX-Small" ], [ "25px", "X-Small" ], [ "50px", "Small" ], [ "100px", "Medium" ], [ "150px", "Large" ], [ "200px", "X-Large" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "default" : "50px"
+    }, {
+      "id" : "e4c7d5b8-9d6e-20e8-0a13-1697164cb5ea",
+      "name" : "padding_bottom_mobile",
+      "display_width" : null,
+      "label" : "Padding Bottom (Mobile):",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "placeholder" : "Please Select",
+      "choices" : [ [ "0px", "None" ], [ "10px", "XX-Small" ], [ "25px", "X-Small" ], [ "50px", "Small" ], [ "100px", "Medium" ], [ "150px", "Large" ], [ "200px", "X-Large" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "default" : "50px"
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "type" : "group",
+    "default" : {
+      "padding_top" : "50px",
+      "padding_bottom" : "50px",
+      "padding_top_tablet" : "50px",
+      "padding_bottom_tablet" : "50px",
+      "padding_top_mobile" : "50px",
+      "padding_bottom_mobile" : "50px"
+    }
+  }, {
+    "id" : "5e9fc1d7-421a-7174-0df5-e63aada15219",
+    "name" : "visibility",
+    "display_width" : null,
+    "label" : "///// Show this Row on:",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "914d9fd4-088f-116b-3fe1-5a7f931be4dc",
+      "name" : "vis_desktop",
+      "display_width" : null,
+      "label" : "Desktop:",
+      "required" : false,
+      "locked" : false,
+      "display" : "checkbox",
+      "type" : "boolean",
+      "default" : true
+    }, {
+      "id" : "61dce162-7dd3-f023-bfb5-5f3ecdeeccfe",
+      "name" : "vis_tablet",
+      "display_width" : null,
+      "label" : "Tablet:",
+      "required" : false,
+      "locked" : false,
+      "display" : "checkbox",
+      "type" : "boolean",
+      "default" : true
+    }, {
+      "id" : "12fc1982-feea-4b99-775e-9fc8a43811eb",
+      "name" : "vis_phone",
+      "display_width" : null,
+      "label" : "Mobile:",
+      "required" : false,
+      "locked" : false,
+      "display" : "checkbox",
+      "type" : "boolean",
+      "default" : true
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "type" : "group",
+    "default" : {
+      "vis_desktop" : true,
+      "vis_tablet" : true,
+      "vis_phone" : true
+    }
+  }, {
+    "id" : "7465415b-8687-2400-5167-33f847288710",
+    "name" : "code",
+    "display_width" : null,
+    "label" : "///// Code (The Nerdy Stuff)",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "f1e81c7f-b1af-b1c6-aa59-8e6cbecc7b26",
+      "name" : "section_id",
+      "display_width" : null,
+      "label" : "CSS ID:",
+      "help_text" : "This sets an ID on the row in case you'd like to use an anchor tag and have the page scroll to this section.",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : ""
+    }, {
+      "id" : "05534d04-aab5-acce-8c63-663ea4e68128",
+      "name" : "section_class",
+      "display_width" : null,
+      "label" : "CSS Class:",
+      "help_text" : "This is helpful if you know just a enough of CSS to be dangerous.  Make sure that class names don't have spaces.  ",
+      "required" : false,
+      "locked" : false,
+      "validation_regex" : "",
+      "allow_new_line" : false,
+      "show_emoji_picker" : false,
+      "type" : "text",
+      "default" : ""
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "type" : "group",
+    "default" : {
+      "section_id" : "",
+      "section_class" : ""
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "type" : "group",
+  "default" : {
+    "bg_color" : {
+      "color" : "#444444",
+      "opacity" : 100
+    },
+    "content_width" : "container",
+    "set_width" : 600,
+    "shadow" : "none",
+    "shadow_color" : {
+      "color" : "#000000",
+      "opacity" : 20
+    },
+    "shadow_size" : 20,
+    "adv_settings" : {
+      "padding_top" : "50px",
+      "padding_bottom" : "50px",
+      "padding_top_tablet" : "50px",
+      "padding_bottom_tablet" : "50px",
+      "padding_top_mobile" : "50px",
+      "padding_bottom_mobile" : "50px"
+    },
+    "visibility" : {
+      "vis_desktop" : true,
+      "vis_tablet" : true,
+      "vis_phone" : true
+    },
+    "code" : {
+      "section_id" : "",
+      "section_class" : ""
+    }
+  }
+} ]

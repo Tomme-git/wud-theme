@@ -1,0 +1,1208 @@
+{% set plan_addons_column = module.settings.columns.plan_addons_column %}
+{% set final_price_column = module.settings.columns.final_price_column %}
+{% set mobile_settings = module.settings.mobile_settings %}
+
+{% require_css %}
+<style>
+  :root {
+    /* Variables that make it customizable for marketing */
+
+    /********************************* SECTION */
+
+    /********************************* COLUMN */
+    /* Column width format might change -- temporary */
+    /*** Currently 12-col format */
+
+    /* Defaults/Fallbacks */
+    --pmLeft-width-default: 8;
+    --pmRight-width-default: 4;
+    /* Override defaults/fallbacks */
+    {% if module.settings.columns.left_column_width || module.settings.columns.left_column_width %}
+    --pmLeft-width: {{ module.settings.columns.left_column_width }};
+    --pmRight-width: {{ module.settings.columns.right_column_width }};
+    {% endif %}
+    
+    /* Right column */
+    --pmRight-position-default: sticky;
+    {% if final_price_column.make_right_column_sticky == false %}
+    --pmRight-position: static;
+    {% endif %}
+
+    /* Mobile order */
+    --pmLeft-mobile-order-default: 2;
+    --pmRight-mobile-order-default: 1;
+    {% if mobile_settings.change_order_on_mobile %}
+    --pmLeft-mobile-order: {{ mobile_settings.mobile_left_column_ordering }};
+    --pmRight-mobile-order: {{ mobile_settings.mobile_right_column_ordering }};
+    {% endif %}
+
+    /* Left column */
+    
+    /* Top slider form */
+    /* Padding */
+    --pmlInnerForm-padding-default: 40px 40px 40px 40px;
+    {% if plan_addons_column.slider_form.choose_your_plan_form_padding %}
+    --pmlInnerForm-padding: {{ plan_addons_column.slider_form.choose_your_plan_form_padding }}px;
+    {% endif %}
+    
+    /* border radius */
+    --slider-form-radius-default: 16px;
+    {% if plan_addons_column.slider_form.slider_form_border_radius %}
+    --slider-form-radius: {{ plan_addons_column.slider_form.slider_form_border_radius }}px;
+    {% endif %}
+    
+    /* background color */
+    --slider-form-bg-default: rgba(255,255,255,1);
+    {% if plan_addons_column.slider_form.slider_form_background_color.color %}
+    --slider-form-bg: rgba({{ plan_addons_column.slider_form.slider_form_background_color.color|convert_rgb }}, {{ plan_addons_column.slider_form.slider_form_background_color.opacity * 0.01 }});
+    {% endif %}
+  }
+
+  .pricingSection * {
+    box-sizing: border-box;
+  }
+  
+  .pricingSection {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-inline:15px;
+  }
+
+  .pricingSection li {
+    list-style-type: none;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .pMain {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    gap: 2rem;
+  }
+
+  .pmLeft {
+    width: calc(100% / 12 * var(--pmLeft-width, var(--pmLeft-width-default)) - 1rem);
+  }
+  
+  .pmRight {
+    width: calc(100% / 12 * var(--pmRight-width, var(--pmRight-width-default)) - 1rem);
+    position: var(--pmRight-position, var(--pmRight-position-default));
+    top: 100px;
+    height: max-content;
+    background-color: #ffffff;
+    border: 1px solid #d7e1e6;
+    border-radius: 16px;
+    box-shadow: 0 8px 10px -2px rgba(0,0,0,.15);
+    padding: 40px;
+    
+    container-type: inline-size;
+  }
+  
+  .pmRight label, .row-fluid .pmRight label {
+    color: #2f5e77;
+    font-family: Montserrat,sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 30px;
+    position: relative;
+  }
+  
+  .pmRight form {
+    text-align: center;
+  }
+  
+  .myrow label > span, .row-fluid .myrow label > span {
+    background: #fbab00;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: -.02em;
+    line-height: 10px;
+    padding: 6px;
+    text-transform: uppercase;
+    position: absolute;
+    left: 0;
+    top: -110%;
+    /*
+    transform: rotate(35deg);
+    */
+    white-space: nowrap;
+  }
+  
+  .myrow > input, .row-fluid .myrow > input {
+    display: none;
+  }
+  
+  .myrow > .my, .row-fluid .myrow > .my {
+    background-color: #3b7695;
+    background-image: linear-gradient(35deg,#005682,#4bb2a3);
+    border-radius: 18px;
+    cursor: pointer;
+    display: inline-block;
+    height: 36px;
+    margin: 0 12px;
+    padding: 9px;
+    position: relative;
+    vertical-align: top;
+    width: 71px;
+  }
+  
+  .myrow > .my::before, .row-fluid .myrow > .my::before {
+    background: #fff;
+    border-radius: 50%;
+    content: "";
+    height: 21px;
+    left: 8px;
+    position: absolute;
+    top: 7px;
+    transition: all .4s ease;
+    width: 21px;
+  }
+  
+  .myrow > input:checked + .my::before, .row-fluid .myrow > input:checked + .my::before {
+    left: 44px;
+  }
+  
+  .disnote {
+    text-align: center;
+    font-size: 12px;
+    margin-top: 10px;
+  }
+  
+  .finalPrices {
+    padding:20px 0;
+    margin:0;
+  }
+  
+  .finalPrices li {
+    text-align: center;
+    font-size: 18px;
+    color: rgba(24,47,60,.5); /* #182f3c 50% opacity */
+  }
+  
+  .finalPrices li:nth-child(3) .fp {
+    font-size:24px;
+    padding-left:7px;
+  }
+  
+  .finalPrices li .fp {
+    color: #182f3c;
+  }
+  
+  .finalPrices li .oPrice {
+    color: #ffa700;
+  }
+
+  .oPrice {
+    text-decoration: line-through;
+  }
+  
+  .fTrial, .resForm {
+    text-align: center;
+  }
+  
+  .fTrial a {
+    box-shadow: 0 0 0 0 rgba(0,0,0,0);
+  }
+  
+  .resForm {
+    margin-top:15px;
+  }
+  
+  .resForm a {
+    position: relative;
+    padding-left: 40px;
+  }
+  
+  .resForm a::before, .row-fluid .resForm a::before {
+    background: url(https://www.wakeupdata.com/hubfs/Assets%20-%20Wakeup%20Data/reset.jpg) no-repeat top/contain;
+    content: "";
+    height: 24px;
+    left: 0;
+    position: absolute;
+    width: 24px;
+  }
+
+  .pmlInner {
+    width: 100%;
+  }
+
+  .o1 {
+    padding: var(--pmlInnerForm-padding, var(--pmlInnerForm-padding-default));
+    border-radius: var(--slider-form-radius, var(--slider-form-radius-default));
+    background-color: var(--slider-form-bg, var(--slider-form-bg-default));
+    box-shadow: 0 8px 10px -2px rgba(0,0,0,.15);
+    border: {% if plan_addons_column.slider_form.lines_thickness %} {{ plan_addons_column.slider_form.lines_thickness }}px {% else %} 1px {% endif %} solid {% if plan_addons_column.slider_form.lines_color.color %} rgba({{ plan_addons_column.slider_form.lines_color.color|convert_rgb }}, {{ plan_addons_column.slider_form.lines_color.opacity * 0.01 }}) {% else %} #d7e1e6 {% endif %};
+  }
+
+  .pmlTitle {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 2rem;
+  }
+
+  .pmlTitle h5 {
+    font-size: 24px;
+    font-weight: 600;
+  }
+  
+  .pmlTitle a {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .rangeWrap {
+    width: 100%;
+  }
+
+  .rangeWrap .rInner {
+    {% if plan_addons_column.slider_form.gradient_slider %}
+      background-image: linear-gradient(9deg, rgba({{ plan_addons_column.slider_form.slider_range_color.color|convert_rgb }}, {{ plan_addons_column.slider_form.slider_range_color.opacity * 0.01 }}), rgba({{ plan_addons_column.slider_form.slider_range_color_2.color|convert_rgb }}, {{ plan_addons_column.slider_form.slider_range_color_2.opacity * 0.01 }}));
+    {% else %}
+      background-color: rgba({{ plan_addons_column.slider_form.slider_range_color.color|convert_rgb }}, {{ plan_addons_column.slider_form.slider_range_color.opacity * 0.01 }});
+    {% endif %}
+    /*
+    background-color: #ff015b;
+    background-image: linear-gradient(9deg, #005682, #4bb2a3);
+    */
+    border: 1px solid #d7e1e6;
+    border-radius: 6px;
+    bottom: -1px;
+    display: inline-block;
+    left: 0;
+    margin-top: -1px;
+    padding-right: 20px;
+    position: absolute;
+    top: -1px;
+  }
+
+  .rangeWrap .rOuter {
+    background-color: #f0f6f9;
+    border: 1px solid #d7e1e6;
+    border-radius: 6px;
+    display: block;
+    height: 12px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    .pMain input[type="range"] {
+      -webkit-appearance: none;
+      background-color: transparent;
+      height: 40px;
+      margin-top: -27px;
+      outline: none;
+      overflow: hidden;
+      position: relative;
+      vertical-align: top;
+      width: 100%;
+    }
+
+    .pMain input[type="range"]::-webkit-slider-runnable-track {
+      -webkit-appearance: none;
+      color: #13bba4;
+      height: 10px;
+      margin-top: -1px;
+    }
+  }
+
+  .pMain input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    background: #4bb2a3;
+    border: 2px solid #4bb2a3;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 24px;
+    margin-top: -5px;
+    position: relative;
+    width: 24px;
+    z-index: 9;
+  }
+
+  .pMain input[type="range"]::-moz-range-thumb {
+    background: #4bb2a3;
+    border: 2px solid #4bb2a3;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 24px;
+    width: 24px;
+  }
+
+  .pmDetail ul {
+    display: flex;
+    flex-wrap: wrap;
+    padding:0;
+  }
+
+  .pmDetail ul li {
+    width: calc(100% / 3);
+    padding-inline: 5px;
+    margin-block: 10px;
+    text-align: center;
+    color: rgba(24,47,60,.5)
+  }
+
+  .pmDetail ul li + li {
+    border-left: {% if plan_addons_column.slider_form.lines_thickness %} {{ plan_addons_column.slider_form.lines_thickness }}px {% else %} 1px {% endif %} solid {% if plan_addons_column.slider_form.lines_color.color %} rgba({{ plan_addons_column.slider_form.lines_color.color|convert_rgb }}, {{ plan_addons_column.slider_form.lines_color.opacity * 0.01 }}) {% else %} #d7e1e6 {% endif %};
+  }
+
+  .pmDetail ul li:nth-child(4) {
+    border-left: none;
+  }
+
+  .pmDetail ul li span {
+    display: block;
+    color: rgba(24,47,60,1)
+  }
+
+  .pmlTitle.addOns {
+    padding-block: 40px;
+    margin-bottom: 0;
+  }
+  
+  .pmlTitle.addOns h5 {
+    margin-bottom: 0;
+  }
+
+  .listing-items {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .listing-item {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    flex-basis: calc(100% / 3 - 1rem);
+    min-width: 180px;
+    padding: {% if plan_addons_column.add_feat.padding %} {{ plan_addons_column.add_feat.padding }}px {% endif %};
+    background-color: {% if plan_addons_column.add_feat.bg_color.color %} rgba({{ plan_addons_column.add_feat.bg_color.color|convert_rgb }}, {{ plan_addons_column.add_feat.bg_color.opacity * 0.01 }}) {% else %} #ffffff {% endif %};
+    border: {% if plan_addons_column.add_feat.lines_thickness %} {{ plan_addons_column.add_feat.lines_thickness }}px {% else %} 1px {% endif %} solid {% if plan_addons_column.add_feat.lines_color.color %} rgba({{ plan_addons_column.add_feat.lines_color.color|convert_rgb }}, {{ plan_addons_column.add_feat.lines_color.opacity * 0.01 }}) {% else %} #d7e1e6 {% endif %};
+    border-radius: {% if plan_addons_column.add_feat.border_radius %} {{ plan_addons_column.add_feat.border_radius }}px {% endif %};
+    {% if plan_addons_column.add_feat.shadow %}
+      box-shadow: 0 8px 10px -2px rgba(0,0,0,.15);
+    {% endif %}
+  }
+  
+  .listing-item h6 {
+    text-transform: capitalize;
+  }
+  
+  {% if plan_addons_column.add_feat.text_color.color %}
+    .listing-item, .listing-item > * {
+      color:  rgba({{ plan_addons_column.add_feat.text_color.color|convert_rgb }}, {{ plan_addons_column.add_feat.text_color.opacity * 0.01 }});
+    }
+  {% endif %}
+  
+  .addOn_price {
+    margin-top: auto;
+    {% if plan_addons_column.add_feat.center_btn && plan_addons_column.add_feat.btn_padding_lr %}
+      margin-inline: auto;
+    {% endif %}
+  }
+  
+  .addOn_price .addOn_range {
+    width: 60%;
+  }
+  
+  .cssAddToBtn {
+    {% if plan_addons_column.add_feat.btn_padding_tb %}
+      padding-block: {{ plan_addons_column.add_feat.btn_padding_tb }}px;
+    {% endif %}
+    {% if plan_addons_column.add_feat.btn_padding_lr %}
+      padding-inline: {{ plan_addons_column.add_feat.btn_padding_lr }}px;
+      width: auto;
+    {% else %}
+    width: 100%;
+    {% endif %}
+    box-sizing: border-box !important;
+    text-align: center;
+  }
+  
+  .cssAddToBtn:active {
+    {% if plan_addons_column.add_feat.btn_padding_tb %}
+      padding-block: {{ plan_addons_column.add_feat.btn_padding_tb }}px;
+    {% endif %}
+    {% if plan_addons_column.add_feat.btn_padding_lr %}
+      padding-inline: {{ plan_addons_column.add_feat.btn_padding_lr }}px;
+      width: auto;
+    {% else %}
+      width: 100%;
+    {% endif %}
+  }
+  
+  .btnaddarea {
+    display: flex;
+    gap: 1rem;
+    position: relative;
+  }
+  
+  .btnaddarea .takeup {
+    font-size: 12px;
+    color: rgba(24,47,60,.5);
+    white-space: nowrap;
+  }
+  
+  .btnaddarea .rangeWrap {
+    margin-top: 12px;
+    margin-bottom: -12px;
+  }
+  
+  .btnaddarea .addOn-amount {
+    display: flex;
+    align-items: center;
+    padding-top: 24px;
+  }
+  
+  .pmField .addOn_price input[type="checkbox"], .row-fluid .pmField > input[type="checkbox"] {
+    display: none;
+  }
+  
+  input[type="checkbox"], input[type="radio"] {
+    margin-right: 8px;
+    width: auto !important;
+  }
+  
+  [type="checkbox"], [type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+  }
+  
+  button, input {
+    overflow: visible;
+  }
+  
+  
+  
+  .pmField .addOn_price input[type="checkbox"] + label, .row-fluid .pmField > input[type="checkbox"] + label {
+    background: #fff;
+    cursor: pointer;
+    float: left;
+    padding-left: 36px;
+    padding-right: 10px;
+  }
+  
+  .pmField .addOn_price input[type="checkbox"] + label::before, .row-fluid .pmField > input[type="checkbox"] + label::before {
+    border: 2px solid #d7e1e6;
+    border-radius: 3px;
+    box-sizing: border-box;
+    content: "";
+    height: 24px;
+    left: 0;
+    position: absolute;
+    top: -4px;
+    width: 24px;
+  }
+  
+  .pmField .addOn_price input[type="checkbox"]:checked + label::before, .row-fluid .pmField > input[type="checkbox"]:checked + label::before {
+    background: url(https://www.wakeupdata.com/hubfs/Assets%20-%20Wakeup%20Data/true.svg) no-repeat 50%/15px auto #182f3c;
+    border-color: #182f3c;
+    border-radius: 3px;
+  }
+  
+  .btnaddarea label {
+    font-size: .8125rem;
+  }
+  
+  @media only screen and (max-width: 990px) {
+    .pMain {
+      flex-direction: column;
+    }
+    .pmLeft,
+    .pmRight {
+      width: 100%;
+    }
+
+    .pmLeft {
+      order: var(--pmLeft-mobile-order, var(--pmLeft-mobile-order-default));
+    }
+
+    .pmRight {
+      order: var(--pmRight-mobile-order, var(--pmRight-mobile-order-default));
+      position: initial;
+    }
+  }
+  
+  @media only screen and (max-width: 991px) {
+    .pricingSection .container {
+      max-width: 100%;
+    }
+  }
+
+  @media only screen and (max-width: 767px) {
+    .pmDetail ul li {
+      width: 100%;
+      padding-block: 20px;
+      margin-block: 0;
+    }
+    .pmDetail ul li + li {
+      border-left: none;
+      border-top: {% if plan_addons_column.slider_form.lines_thickness %} {{ plan_addons_column.slider_form.lines_thickness }}px {% else %} 1px {% endif %} solid {% if plan_addons_column.slider_form.lines_color.color %} rgba({{ plan_addons_column.slider_form.lines_color.color|convert_rgb }}, {{ plan_addons_column.slider_form.lines_color.opacity * 0.01 }}) {% else %} #d7e1e6 {% endif %};
+    }
+    
+    .listing-item {
+      width: 100%;
+      flex-basis: 100%;
+      background-color: white;
+      border: {% if plan_addons_column.add_feat.lines_thickness %} {{ plan_addons_column.add_feat.lines_thickness }}px {% else %} 1px {% endif %} solid {% if plan_addons_column.add_feat.lines_color.color %} rgba({{ plan_addons_column.add_feat.lines_color.color|convert_rgb }}, {{ plan_addons_column.add_feat.lines_color.opacity * 0.01 }}) {% else %} #d7e1e6 {% endif %};
+    }
+  }
+    
+  #hs_cos_wrapper_{{ name }} .hhs-logo-mod {
+    padding-top: {{ module.row_settings.adv_settings.padding_top }};
+    padding-bottom:  {{ module.row_settings.adv_settings.padding_bottom }};
+    background-color: rgba({{ module.row_settings.bg_color.color|convert_rgb }}, {{ module.row_settings.bg_color.opacity * 0.01 }});
+  }
+  
+    {# TABLET CSS #}
+  @media (max-width: 922px) {
+    #hs_cos_wrapper_{{ name }} .hhs-logo-mod {
+      padding-top: {{ module.row_settings.adv_settings.padding_top_tablet }};
+      padding-bottom: {{ module.row_settings.adv_settings.padding_bottom_tablet }};
+    }
+  }
+  
+  {# MOBILE CSS #}
+  @media (max-width: 575px) {
+    #hs_cos_wrapper_{{ name }} .hhs-logo-mod {
+      padding-top: {{ module.row_settings.adv_settings.padding_top_mobile }};
+      padding-bottom: {{ module.row_settings.adv_settings.padding_bottom_mobile }};
+    }
+    .pmlTitle {
+      margin-bottom: 20px;
+      display: flex;
+      gap: 0.5rem;
+      flex-direction: column;
+    }
+    
+    .pmRight {
+      padding: 20px;
+    }
+    
+    .pmRight label, .row-fluid .pmRight label {
+      font-size: 14px;
+    }
+    
+    .myrow > .my, .row-fluid .myrow > .my {
+      scale:0.8;
+      margin: 0;
+    }
+    
+    .pmRight li {
+      scale: 0.8;
+    }
+
+  }
+  
+  @container (max-width: 239px) { 
+    .pmRight {
+      padding: 20px;
+    }
+    
+    .pmRight label, .row-fluid .pmRight label {
+      font-size: 14px;
+    }
+    
+    .myrow > .my, .row-fluid .myrow > .my {
+      scale:0.8;
+      margin: 0;
+    }
+    
+    .pmRight li {
+      scale: 0.8;
+    }
+  }
+  
+  .pmField .tTip>span,
+  .row-fluid .pmField .tTip>span {
+    background:url(https://www.wakeupdata.com/hubfs/Assets%20-%20Wakeup%20Data/i.png) no-repeat 50%/10px auto #3b7695;
+    border-radius:50%;
+    color:#fff!important;
+    display:inline-block;
+    font-size:0!important;
+    height:18px;
+    line-height:18px!important;
+    margin:0!important;
+    text-align:center;
+    vertical-align:top;
+    width:18px
+  }
+  .pmField .tTip,
+  .row-fluid .pmField .tTip {
+    display:inline-block;
+    font-size:12px;
+    line-height:17px;
+    margin:0 0 0 8px;
+    position:relative
+  }
+  .pmField .tTip p,
+  .row-fluid .pmField .tTip p {
+    font-weight:400;
+    margin:0 0 10px
+  }
+  .pmField .tTip p:last-child,
+  .row-fluid .pmField .tTip p:last-child {
+    margin:0
+  }
+  .pmField .tTip>div,
+  .row-fluid .pmField .tTip>div {
+    background:#fff;
+    border:1px solid #d7e1e6;
+    border-radius:5px;
+    display:inline-block;
+    font-weight:400;
+    left:0;
+    opacity:0;
+    padding:10px 20px;
+    position:absolute;
+    top:-10px;
+    transform:translate(-50%,-100%);
+    transition-delay:.2s;
+    visibility:hidden;
+    width:300px;
+    z-index:9
+  }
+  .pmField .tTip>div:after,
+  .row-fluid .pmField .tTip>div:after {
+    background:#fff;
+    border-bottom:1px solid #d7e1e6;
+    border-right:1px solid #d7e1e6;
+    bottom:-7.5px;
+    content:"";
+    height:14px;
+    left:50%;
+    position:absolute;
+    transform:rotate(45deg);
+    width:14px
+  }
+  .pmField .tTip:hover>div,
+  .row-fluid .pmField .tTip:hover>div {
+    opacity:1;
+    visibility:visible
+  }
+  .pmField .tTip a,
+  .row-fluid .pmField .tTip a {
+    color:#3b7695;
+    font-size:13px
+  }
+  .pmField .tTip a:hover,
+  .row-fluid .pmField .tTip a:hover {
+    text-decoration:underline!important
+  }
+</style>
+{% end_require_css %}
+<div id="{{ module.row_settings.code.section_id }}" class="pricingSection hhs-logo-mod {{ module.row_settings.code.section_class }}">
+    <div class="{{ module.row_settings.content_width }}" style="{% if module.row_settings.content_width == 'custom' %} max-width: {{ module.row_settings.set_width }}px; margin: auto;{% endif %}">
+    <div class="pTop flex justLeft alignEnd fullwidth">
+      <div data-value="1" class="ptColumn">
+        <div style="display: none;" class="w-100 text-center topBox">
+          <!--  pmLeft span8 -->
+
+          <h1>WakeupData Pricing</h1>
+          <h3>
+            <em
+              >Build the perfect plan for managing and optimising your product
+              feeds</em
+            >
+          </h3>
+          <p>
+            Don't hesitate - get started with a 14-day free trial (
+            <strong>no credit card required</strong> ) and then pick a plan.
+          </p>
+        </div>
+        <div style="display: none" class="Right" style="display: none">
+          <ul>
+            <li class="">Reduce Time To Market</li>
+
+            <li class="">Personal Customer Support</li>
+
+            <li class="">Free Demo &amp; Trial</li>
+          </ul>
+        </div>
+        <!-- 
+           <div class="ptcBtn fullwidth">
+             <a href="javascript:;">test</a>
+           </div>
+            -->
+      </div>
+    </div>
+
+    <div class="pMain fullwidth">
+      <div class="pmLeft">
+        <div class="pmlInner o1 hide">
+          <form>
+            <div class="pmlTitle">
+              <h5>Choose your plan: <span></span></h5>
+
+              <a class="resetAddon o2 hide" href="#Demo-Form">
+                need more? contact us
+              </a>
+            </div>
+            <div class="pmFields fullwidth">
+              <div class="pmField fullwidth">
+                <div class="fullwidth rangeRow">
+                  <div class="rangeWrap fullwidth">
+                    <span class="rOuter"><span class="rInner"></span></span>
+                    <input
+                      name="itemRange"
+                      type="range"
+                      min="0"
+                      max="10"
+                      value="0"
+                      step="1"
+                    />
+                  </div>
+                  <div class="pmDetail fullwidth">
+                    <ul>
+                      <li>Products/SKUs: <span>0</span></li>
+                      <li>Projects: <span>0</span></li>
+                      <li>Channels: <span>0</span></li>
+                      <li>Additional user accounts: <span>0</span></li>
+                      <li>Client accounts: <span>0</span></li>
+                      <li>Dedicated account review: <span>None</span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <form>
+          <div class="pmlInner o2">
+            <div class="pmlTitle addOns">
+              <h5>Additional Features:</h5>
+              <a class="resetAddon hide">reset all add-ons</a>
+            </div>
+          </div>
+          <div class="pmlInner o2">
+            <div class="pmFields fullwidth eqh-container listing-items">
+              <!-- Add-ons -->
+              <div class="pmField addOn_box eqh-item listing-item">
+                <h6>{{ module.card_content.card_1.heading }}</h6>
+                {% inline_rich_text field="card_content.card_1.text" value="{{ module.card_content.card_1.text }}" %}
+                <div class="addOn_price">
+                  <span class="btns cssAddToBtn fullwidth {%- if module.card_content.card_1.uniq_btn && module.card_content.card_1.use_uniq_btn == true %} {{ module.card_content.card_1.uniq_btn }} {% else %} {%- if plan_addons_column.add_feat.button_style %} {{ plan_addons_column.add_feat.button_style }} {%- endif %} {%- endif %}">Add to plan</span>
+                  <span class="btnaddarea" style="display: none">
+                    <input
+                      type="checkbox"
+                      class="addOn"
+                      id="v1"
+                      name="Near real-time data"
+                    />
+                    <label class="xl" for="v1">Add to plan</label>
+                    <span>€0</span>
+                  </span>
+                </div>
+              </div>
+              <div
+                id="field2"
+                class="pmField addOn_box eqh-item listing-item"
+              >
+                <h6>{{ module.card_content.card_2.heading }}</h6>
+                {% inline_rich_text field="card_content.card_2.text" value="{{ module.card_content.card_2.text }}" %}
+                <div class="addOn_price">
+                  <span class="btns cssAddToBtn fullwidth {%- if module.card_content.card_2.uniq_btn && module.card_content.card_2.use_uniq_btn == true %} {{ module.card_content.card_2.uniq_btn }} {% else %} {%- if plan_addons_column.add_feat.button_style %} {{ plan_addons_column.add_feat.button_style }} {%- endif %} {%- endif %}">Add to plan</span>
+                  <span class="btnaddarea" style="display: none">
+                    <input
+                      type="checkbox"
+                      class="addOn"
+                      id="v2"
+                      name="Product Search Ads"
+                    />
+                    <label class="xl" for="v2">Add to plan</label>
+                    <span>€0</span>
+                  </span>
+                </div>
+              </div>
+              <div
+                id="field3"
+                class="pmField addOn_box eqh-item listing-item"
+              >
+                <h6>
+                  {{ module.card_content.card_3.heading }}
+                  <div class="tTip">
+                    <span>i</span>
+                    <div>
+                      <p>
+                        With WakeupData's Image Transformations you can add
+                        layers of data to your product images; Prices,
+                        Discounts, Seasonal graphics or Sales and Offer badges.
+                      </p>
+                      <p>
+                        <a
+                          href="/image-transformation-explainer?hsLang=en"
+                          rel="noopener"
+                          >Learn more -&gt;</a
+                        >
+                      </p>
+                    </div>
+                  </div>
+                </h6>
+                {% inline_rich_text field="card_content.card_3.text" value="{{ module.card_content.card_3.text }}" %}
+                <div class="addOn_price">
+                  <span class="btns cssAddToBtn fullwidth {%- if module.card_content.card_3.uniq_btn && module.card_content.card_3.use_uniq_btn == true %} {{ module.card_content.card_3.uniq_btn }} {% else %} {%- if plan_addons_column.add_feat.button_style %} {{ plan_addons_column.add_feat.button_style }} {%- endif %} {%- endif %}">Add to plan</span>
+                  <span class="btnaddarea" style="display: none">
+                    <div class="rangeRow addOn_range">
+                      <label></label>
+                      <span class="takeup"
+                        ><span></span><span class="">0 products</span></span
+                      >
+                      <div class="rangeWrap">
+                        <!--                 <div class="rangeFill"></div> -->
+                        <span class="rOuter"><span class="rInner"></span></span>
+                        <input
+                          id="vr1"
+                          class="addOn"
+                          type="range"
+                          min="0"
+                          max="100000"
+                          value="0"
+                          step="1000"
+                        />
+                      </div>
+                    </div>
+                    <div class="addOn-amount">€0</div>
+                  </span>
+                </div>
+              </div>
+              <div
+                id="field4"
+                class="pmField addOn_box eqh-item listing-item"
+              >
+                <h6>{{ module.card_content.card_4.heading }}</h6>
+                {% inline_rich_text field="card_content.card_4.text" value="{{ module.card_content.card_4.text }}" %}
+                <div class="addOn_price">
+                  <span class="btns cssAddToBtn fullwidth {%- if module.card_content.card_4.uniq_btn && module.card_content.card_4.use_uniq_btn == true %} {{ module.card_content.card_4.uniq_btn }} {% else %} {%- if plan_addons_column.add_feat.button_style %} {{ plan_addons_column.add_feat.button_style }} {%- endif %} {%- endif %}">Add to plan</span>
+                  <span class="btnaddarea" style="display: none">
+                    <input
+                      type="checkbox"
+                      id="v3"
+                      class="addOn"
+                      name="Incremental Updates"
+                    />
+                    <label class="xl" for="v3">Add to plan</label>
+                    <span>€0</span>
+                  </span>
+                </div>
+              </div>
+              <div
+                id="field5"
+                class="pmField addOn_box eqh-item listing-item"
+              >
+                <h6>{{ module.card_content.card_5.heading }}</h6>
+                {% inline_rich_text field="card_content.card_5.text" value="{{ module.card_content.card_5.text }}" %}
+                <div class="addOn_price">
+                  <span class="btns cssAddToBtn fullwidth {%- if module.card_content.card_5.uniq_btn && module.card_content.card_5.use_uniq_btn == true %} {{ module.card_content.card_5.uniq_btn }} {% else %} {%- if plan_addons_column.add_feat.button_style %} {{ plan_addons_column.add_feat.button_style }} {%- endif %} {%- endif %}">Add to plan</span>
+                  <span class="btnaddarea" style="display: none">
+                    <div class="rangeRow addOn_range">
+                      <label></label>
+                      <span class="takeup"
+                        ><span></span><span class="">0 matches</span></span
+                      >
+                      <div class="rangeWrap">
+                        <span class="rOuter"><span class="rInner"></span></span>
+                        <input
+                          id="vr2"
+                          class="addOn"
+                          type="range"
+                          min="0"
+                          max="25000"
+                          value="0"
+                          step="10"
+                        />
+                      </div>
+                    </div>
+                    <div class="addOn-amount">€0</div>
+                  </span>
+                </div>
+              </div>
+              <div
+                id="field6"
+                class="pmField addOn_box eqh-item listing-item"
+              >
+                <h6>{{ module.card_content.card_6.heading }}</h6>
+                {% inline_rich_text field="card_content.card_6.text" value="{{ module.card_content.card_6.text }}" %}
+                <div class="addOn_price">
+                  <span class="btns cssAddToBtn fullwidth {%- if module.card_content.card_6.uniq_btn && module.card_content.card_6.use_uniq_btn == true %} {{ module.card_content.card_6.uniq_btn }} {% else %} {%- if plan_addons_column.add_feat.button_style %} {{ plan_addons_column.add_feat.button_style }} {%- endif %} {%- endif %}">Add to plan</span>
+                  <span class="btnaddarea" style="display: none">
+                    <div class="rangeRow addOn_range">
+                      <label></label>
+                      <span class="takeup"
+                        ><span></span><span class="">0 removals</span></span
+                      >
+                      <div class="rangeWrap">
+                        <span class="rOuter"><span class="rInner"></span></span>
+                        <input
+                          id="vr3"
+                          class="addOn"
+                          type="range"
+                          min="0"
+                          max="75000"
+                          value="0"
+                          step="1000"
+                        />
+                      </div>
+                    </div>
+                    <div class="addOn-amount">€0</div>
+                  </span>
+                </div>
+              </div>
+              <div
+                id="field7"
+                class="pmField addOn_box eqh-item listing-item"
+              >
+                <h6>{{ module.card_content.card_7.heading }}</h6>
+                {% inline_rich_text field="card_content.card_7.text" value="{{ module.card_content.card_7.text }}" %}
+                <div class="addOn_price">
+                  <span class="btns cssAddToBtn fullwidth {%- if module.card_content.card_7.uniq_btn && module.card_content.card_7.use_uniq_btn == true %} {{ module.card_content.card_7.uniq_btn }} {% else %} {%- if plan_addons_column.add_feat.button_style %} {{ plan_addons_column.add_feat.button_style }} {%- endif %} {%- endif %}">Add to plan</span>
+                  <span class="btnaddarea" style="display: none">
+                    <div class="rangeRow addOn_range">
+                      <label></label>
+                      <span class="takeup"
+                        ><span></span
+                        ><span class="">0 items in total</span></span
+                      >
+                      <div class="rangeWrap">
+                        <span class="rOuter"><span class="rInner"></span></span>
+                        <input
+                          id="vr5"
+                          class="addOn"
+                          type="range"
+                          min="0"
+                          max="250000"
+                          value="0"
+                          step="1000"
+                        />
+                      </div>
+                    </div>
+                    <div class="addOn-amount">€0</div>
+                  </span>
+                </div>
+                <!--div class="fullwidth rangeRow"><!-- Crawl - number of sites 
+                  <label>Number of sites</label>
+                  <span class="takeup o2"><span class="fullwidth">0</span></span>
+                  <div class="rangeWrap fullwidth">
+                    <span class="rOuter"><span class="rInner"></span></span>
+                  <input id="vr4" class="addOn" type="range" min="1" max="10" value="0" step="1">
+                  </div>
+                </div-->
+                <!--div class="fullwidth rangeRow">
+                  <label>How many times a day3</label>
+                  <span class="takeup o2"><span class="fullwidth">0</span></span>
+                  <div class="rangeWrap fullwidth">
+                    <span class="rOuter"><span class="rInner"></span></span>
+                  <input id="vr6" class="addOn" type="range" min="1" max="2" value="0" step="1">
+                  </div>
+                </div-->
+              </div>
+              <div
+                id="field8"
+                class="pmField addOn_box eqh-item listing-item"
+              >
+                <h6>{{ module.card_content.card_8.heading }}</h6>
+                {% inline_rich_text field="card_content.card_8.text" value="{{ module.card_content.card_8.text }}" %}
+                <div class="addOn_price">
+                  <span class="btns cssAddToBtn fullwidth {%- if module.card_content.card_8.uniq_btn && module.card_content.card_8.use_uniq_btn == true %} {{ module.card_content.card_8.uniq_btn }} {% else %} {%- if plan_addons_column.add_feat.button_style %} {{ plan_addons_column.add_feat.button_style }} {%- endif %} {%- endif %}">Add to plan</span>
+                  <span class="btnaddarea" style="display: none">
+                    <div class="rangeRow addOn_range">
+                      <label></label>
+                      <span class="takeup"
+                        ><span></span
+                        ><span class="">0 items in total</span></span
+                      >
+                      <div class="rangeWrap">
+                        <span class="rOuter"><span class="rInner"></span></span>
+                        <input
+                          id="vr8"
+                          class="addOn"
+                          type="range"
+                          min="0"
+                          max="3000000"
+                          value="0"
+                          step="1000"
+                        />
+                      </div>
+                    </div>
+                    <div class="addOn-amount">€0</div>
+                  </span>
+                </div>
+                <!--div class="fullwidth rangeRow"><!-- Scrape - number of sites
+                  <label>Number of sites</label>
+                  <span class="takeup o2"><span class="fullwidth">0</span></span>
+                  <div class="rangeWrap fullwidth">
+                    <span class="rOuter"><span class="rInner"></span></span>
+                  <input id="vr7" class="addOn" type="range" min="1" max="10" value="0" step="1">
+                  </div>
+                </div>
+                <div class="fullwidth rangeRow">
+                  <label>How many times a day</label>
+                  <span class="takeup o2"><span class="fullwidth">0</span></span>
+                  <div class="rangeWrap fullwidth">
+                    <span class="rOuter"><span class="rInner"></span></span>
+                  <input id="vr9" class="addOn" type="range" min="1" max="4" value="0" step="1">
+                  </div>
+                </div-->
+              </div>
+              <div
+                id="field9"
+                class="pmField addOn_box eqh-item listing-item"
+              >
+                <h6>{{ module.card_content.card_9.heading }}</h6>
+                {% inline_rich_text field="card_content.card_9.text" value="{{ module.card_content.card_9.text }}" %}
+                <div class="addOn_price">
+                  <span class="btns cssAddToBtn fullwidth {%- if module.card_content.card_9.uniq_btn && module.card_content.card_9.use_uniq_btn == true %} {{ module.card_content.card_9.uniq_btn }} {% else %} {%- if plan_addons_column.add_feat.button_style %} {{ plan_addons_column.add_feat.button_style }} {%- endif %} {%- endif %}">Add to plan</span>
+                  <span class="btnaddarea" style="display: none">
+                    <div class="rangeRow addOn_range">
+                      <label></label>
+                      <span class="takeup"
+                        ><span></span><span class="">0 hours</span></span
+                      >
+                      <div class="rangeWrap">
+                        <span class="rOuter"><span class="rInner"></span></span>
+                        <input
+                          id="vr10"
+                          class="addOn"
+                          type="range"
+                          min="0"
+                          max="10"
+                          value="0"
+                          step="1"
+                        />
+                      </div>
+                    </div>
+                    <div class="addOn-amount">€0</div>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- end of add-on wrapper -->
+          </div>
+        </form>
+
+        <div style="display: none;" class="pmlInner o3">
+          <div id="field10" class="pmField fullwidth">
+            <h6>
+              WakeupData CSS
+              <span class="fullwidth"
+                >Google Comparison Shopping Service (CSS)</span
+              >
+            </h6>
+            <div class="cssText fullwidth">
+              <p>
+                <span>As a prize winning&nbsp;</span
+                ><strong>Premium Google CSS Partner</strong
+                ><span
+                  >, WakeupData can get you a 20% reduction on the cost of your
+                  Google Shopping CPC. <br />If you set up a Google Shopping
+                  feed in WakeupData you will automatically get the WakeupData
+                  CSS included.
+                </span>
+              </p>
+              <p>
+                <span
+                  >But, as a standalone service, you can also use our CSS
+                  without committing to any of our platforms. In that case,
+                  prices </span
+                ><strong>start from €35 per month</strong
+                ><span>&nbsp;for the first domain.</span>
+              </p>
+            </div>
+            <!--            <h6>Only Google CSS </h6>
+  <!--            <div class="fullwidth rangeRow">
+                <label>Number of domains</label>
+                <span class="takeup"><span>€0</span><span class="fullwidth">0</span></span>
+  <!--              <div class="rangeWrap fullwidth">
+  <!--                <div class="rangeFill"></div> -->
+            <!--                  <span class="rOuter"><span class="rInner"></span></span>
+                    <input id="vr11" class="css" type="range" min="0" max="10" value="0" step="1">
+                </div-->
+            <!--            </div-->
+            <div class="btns cssBtn fullwidth">
+              <a
+                href="https://www.wakeupdata.com/your-google-comparison-shopping-partner?hsLang=en"
+              >
+                Learn More
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="pmRight">
+          <form class="myrow textCenter fullwidth">
+            <label>Monthly</label>
+            <input type="checkbox" id="my" checked />
+            <label class="my" for="my"></label>
+            <label>Yearly <span>Save 10%</span></label>
+          </form>
+          <div class="disnote fullwidth">Paying yearly saves you 10%</div>
+          <ul class="finalPrices fullwidth">
+            <li>
+              Plan price: <span class="fp">€0</span>
+              <span class="pDuration">/mo</span>
+            </li>
+            <li>
+              Add-ons price: <span class="fp">€0</span>
+              <span class="pDuration">/mo</span>
+            </li>
+            <li>
+              Total <span class="oPrice">€0 </span><span class="fp">€0</span>
+              <span class="pDuration">/mo</span>
+            </li>
+          </ul>
+          <div class="fTrial btns fullwidth">
+            <a class="cta-primary" href="#Demo-Form">GET STARTED</a>
+            <!--           <a href="javascript:;">START FREE TRIAL</a> -->
+          </div>
+          <div class="resForm fullwidth">
+            <a href="javascript:;">reset all add-ons</a>
+          </div>
+        </div>
+      <!-- div class="pmRight2 mobile">
+          <form class="myrow textCenter fullwidth">
+            <label>Monthly</label>
+            <input type="checkbox" id="my" checked>
+            <label class="my" for="my"></label>
+            <label>Yearly <span>Save 10%</span></label>
+          </form>
+          <div class="disnote fullwidth">
+            Paying yearly saves you 10%
+          </div>
+          <ul class="finalPrices fullwidth">
+            <li>Plan price: <span class="fp">€0</span> <span class="pDuration">/mo</span></li>
+            <li>Add-ons price: <span class="fp">€0</span> <span class="pDuration">/mo</span></li>
+            <li>Total <span class="oPrice">€0</span><span class="fp">€0</span> <span class="pDuration">/mo</span></li>
+          </ul>
+          <div class="fTrial btns fullwidth">
+            
+            
+            <a href="#Demo-Form"  >GET STARTED</a>
+            <a href="javascript:;">START FREE TRIAL</a>
+          </div>
+          <div class="resForm fullwidth">
+            <a href="javascript:;">reset all add-ons</a>
+          </div>
+        </div -->
+    </div>
+  </div>
+</div>
+{% require_js %}
+<script>
+  var bothEnabled = $(".ptColumn:nth-child(1)").hasClass("active");
+</script>
+<script
+  type="text/javascript"
+  src="https://runners.wakeupdata.com/pricing/pricing1.js"
+></script>
+<!-- Dennis' pricing file -->
+{% end_require_js %}

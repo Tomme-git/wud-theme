@@ -1,0 +1,658 @@
+{# 
+ NAME: TABBED CONTENT
+ MODULE VERSION: 3.0.7
+ CLEAN PRO VERSION: 6.2
+ LAST UPDATED: 2/9/23
+ REMINDER: You Rock!
+#}
+
+{% require_css %}
+<style>
+  :root {
+    --tab-color: transparent; /* default active tab accent color */
+    --tab-opacity: 1; /* default active tab accent color opacity */
+    
+    --panel-text-color: rgb(0,0,0);
+  }
+  
+  @keyframes fadeUp {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(50px);
+      transform: translateY(50px);
+    }
+    100% {
+      opacity: 1;
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+    }
+  }
+  
+  .fade-up {
+    animation: fadeUp 1s ease;
+  }
+  
+  {# ROW STYLE #}
+  
+  #hs_cos_wrapper_{{ name }} .hhs-tab-mod {
+      padding-top: {{ module.row_settings.adv_settings.padding_top }};
+      padding-bottom:  {{ module.row_settings.adv_settings.padding_bottom }};
+    {% if module.row_settings.bg_type == 'color' %}
+      background-color: rgba({{ module.row_settings.bg_color.color|convert_rgb }}, {% if module.row_settings.bg_color.opacity == '100' %}1{% else %}0.{{ module.row_settings.bg_color.opacity }}{% endif %});
+    {% endif %}
+    {% if module.row_settings.bg_type == 'gradient' %}
+      background-color: {{ module.row_settings.color_1.color }};
+      background: -moz-linear-gradient({{ module.row_settings.gradient_angle }}, {{ module.row_settings.color_1.color }} 0%, {{ module.row_settings.color_2.color }} 100%);
+      background: -webkit-linear-gradient({{ module.row_settings.gradient_angle }}, {{ module.row_settings.color_1.color }} 0%, {{ module.row_settings.color_2.color }} 100%);
+      background: linear-gradient({{ module.row_settings.gradient_angle }}, {{ module.row_settings.color_1.color }} 0%, {{ module.row_settings.color_2.color }} 100%);
+    {% endif %}
+    {%- if module.row_settings.bg_type == 'image' && module.row_settings.parallax == False -%}
+      {% if module.row_settings.bg_color_w_image %}
+          background-color: {{ module.row_settings.image_bg_color.rgba }};
+      {% endif %}
+      background-repeat: no-repeat;
+      background-size: {{ module.row_settings.bg_size }};
+      background-position: {{ module.row_settings.img_pos }};
+      {% if module.row_settings.repeat_background_image %}
+        background-repeat: repeat;
+        
+      {% endif %}
+      {% if module.row_settings.image_loading == 'eager' %}
+        background-image: url("{{ module.row_settings.bg_image.src }}");
+      {% else %}
+        background-image: none;
+      {% endif %}
+    {%- endif -%}
+  }
+  {%- if module.row_settings.bg_type == 'image' && module.row_settings.parallax == False && module.row_settings.image_loading == 'lazy' -%}
+    #hs_cos_wrapper_{{ name }} .hhs-tab-mod.lazy-background.visible {
+      {% if module.row_settings.bg_color_w_image %}
+        background-color: {{ module.row_settings.image_bg_color.rgba }};
+      {% endif %}
+      background-image: url("{{ module.row_settings.bg_image.src }}");
+      {% if module.row_settings.repeat_background_image %}
+        background-repeat: repeat;
+      {% else %}
+        background-repeat: no-repeat;
+      {% endif %}
+    }
+    
+  {% endif %}
+  
+  
+  @media (max-width: 922px) {
+    #hs_cos_wrapper_{{ name }} .hhs-tab-mod {
+      padding-top: {{ module.row_settings.adv_settings.padding_top_tablet }};
+      padding-bottom: {{ module.row_settings.adv_settings.padding_bottom_tablet }};
+    }
+  }
+  
+  @media (max-width: 575px) {
+    #hs_cos_wrapper_{{ name }} .hhs-tab-mod {
+      padding-top: {{ module.row_settings.adv_settings.padding_top_mobile }};
+      padding-bottom: {{ module.row_settings.adv_settings.padding_bottom_mobile }};
+    }
+  }
+  
+  {# SHADOW #}
+  
+  {% if module.row_settings.shadow == 'outer' %}
+    #hs_cos_wrapper_{{ name }} {
+      position: relative;
+      z-index: 1;
+    }
+    #hs_cos_wrapper_{{ name }} .outer-shadow {
+     -webkit-box-shadow: 0 0 {{ module.row_settings.shadow_size }}px 1px rgba({{ module.row_settings.shadow_color.color|convert_rgb }}, {% if module.row_settings.shadow_color.opacity == '100' %}1{% else %}0.{{ module.row_settings.shadow_color.opacity }}{% endif %});
+      box-shadow: 0 0 {{ module.row_settings.shadow_size }}px 1px rgba({{ module.row_settings.shadow_color.color|convert_rgb }}, {% if module.row_settings.shadow_color.opacity == '100' %}1{% else %}0.{{ module.row_settings.shadow_color.opacity }}{% endif %});   
+      z-index: 1;
+      position: relative;
+    }
+  {% elif module.row_settings.shadow == 'inner' %}
+    #hs_cos_wrapper_{{ name }} .inner-shadow {
+      -webkit-box-shadow:inset 0 0 {{ module.row_settings.shadow_size }}px 1px rgba({{ module.row_settings.shadow_color.color|convert_rgb }},{% if module.row_settings.shadow_color.opacity == '100' %}1{% else %}0.{{ module.row_settings.shadow_color.opacity }}{% endif %});
+      box-shadow:inset 0 0 {{ module.row_settings.shadow_size }}px 1px rgba({{ module.row_settings.shadow_color.color|convert_rgb }}, {% if module.row_settings.shadow_color.opacity == '100' %}1{% else %}0.{{ module.row_settings.shadow_color.opacity }}{% endif %});
+    }
+  {% endif %} 
+
+  {# PARALLAX #}
+  
+  {% if module.row_settings.parallax %}
+  .para-background {
+      {# Fill parent #}
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      opacity: 0;
+      transition: all 0.125s ease-in-out;
+    }
+
+    .para-background.simpleParallax,
+    .para-background--show-mobile {
+      opacity: 1;
+    }
+
+    #hs_cos_wrapper_{{ name }} .para-background__image {
+      {# Fit image to background block #}
+      display: block;
+      width: 100%;
+      height: 100% !important;
+      object-fit: {{ module.row_settings.bg_size }};
+    }
+  {% endif %}
+   
+  {# OVERLAY #}
+  
+  {%- if module.row_settings.overlay_bg != 'none' -%}
+    #hs_cos_wrapper_{{ name }} .hhs-row-overlay {
+      {% if module.row_settings.overlay_bg == 'color' %}
+        background-color: rgba({{ module.row_settings.overlay_color.color|convert_rgb }}, {% if module.row_settings.overlay_color.opacity == '100' %}1{% else %}0.{{ module.row_settings.overlay_color.opacity }}{% endif %});
+      {% endif %}
+      {% if module.row_settings.overlay_bg == 'gradient' %}
+        background-color: {{ module.row_settings.overlay_color_1.color }};
+        background: -moz-linear-gradient({{ module.row_settings.overlay_angle }}, rgba({{ module.row_settings.overlay_color_1.color|convert_rgb }},{% if module.row_settings.overlay_color_1.opacity == '100' %}1{% else %}0.{{ module.row_settings.overlay_color_1.opacity }}{% endif %}) 0%, rgba({{ module.row_settings.overlay_color_2.color|convert_rgb }},{% if module.row_settings.overlay_color_2.opacity == '100' %}1{% else %} 0.{{ module.row_settings.overlay_color_2.opacity }}{% endif %}) 100%);
+        background: -webkit-linear-gradient({{ module.row_settings.overlay_angle }}, rgba({{ module.row_settings.overlay_color_1.color|convert_rgb }},{% if module.row_settings.overlay_color_1.opacity == '100' %}1{% else %}0.{{ module.row_settings.overlay_color_1.opacity }}{% endif %}) 0%, rgba({{ module.row_settings.overlay_color_2.color|convert_rgb }},{% if module.row_settings.overlay_color_2.opacity == '100' %}1{% else %} 0.{{ module.row_settings.overlay_color_2.opacity }}{% endif %}) 100%);
+        background: linear-gradient({{ module.row_settings.overlay_angle }}, rgba({{ module.row_settings.overlay_color_1.color|convert_rgb }},{% if module.row_settings.overlay_color_1.opacity == '100' %}1{% else %}0.{{ module.row_settings.overlay_color_1.opacity }}{% endif %}) 0%, rgba({{ module.row_settings.overlay_color_2.color|convert_rgb }},{% if module.row_settings.overlay_color_2.opacity == '100' %}1{% else %} 0.{{ module.row_settings.overlay_color_2.opacity }}{% endif %}) 100%);
+      {% endif %}
+    }
+  {%- endif -%}
+  
+  
+  {# WAVE #}
+  
+  {%- if module.row_settings.add_wave_btm -%}
+    #hs_cos_wrapper_{{ name }} .hhs-wave-con {
+      color:  rgba({{ module.row_settings.wave.color.color|convert_rgb }}, {% if module.row_settings.wave.color.opacity == '100' %}1{% else %}0.{{ module.row_settings.wave.color.opacity }}{% endif %});
+      bottom: -{{ module.row_settings.adv_settings.padding_bottom }};
+    }
+    {% if module.row_settings.wave.type == 'opt_6' %}
+      #hs_cos_wrapper_{{ name }} .hhs-wave-con svg {
+        fill: rgba({{ module.row_settings.wave.color.color|convert_rgb }}, {% if module.row_settings.wave.color.opacity == '100' %}1{% else %}0.{{ module.row_settings.wave.color.opacity }}{% endif %});
+        height: {{ module.row_settings.wave.angle_height }}px;
+      }
+    {% endif %}
+    {%- if module.row_settings.wave.flip_wave -%}
+      #hs_cos_wrapper_{{ name }} .hhs-wave-con .hhs-wave-module svg {
+        transform: scale(1, 1) !important;
+      }
+    {%- endif -%}
+    @media (max-width: 922px) {
+      #hs_cos_wrapper_{{ name }} .hhs-wave-con {
+        bottom: -{{ module.row_settings.adv_settings.padding_bottom_tablet }};
+      }
+    }
+    @media (max-width: 575px) {
+      #hs_cos_wrapper_{{ name }} .hhs-wave-con {
+        bottom: -{{ module.row_settings.adv_settings.padding_bottom_mobile }};
+      }
+    }
+  {%- endif -%}
+  
+  {%- if module.row_settings.add_wave_top -%} 
+    #hs_cos_wrapper_{{ name }} .hhs-wave-con-top {
+      color:  rgba({{ module.row_settings.wave_top.color.color|convert_rgb }}, {% if module.row_settings.wave_top.color.opacity == '100' %}1{% else %}0.{{ module.row_settings.wave_top.color.opacity }}{% endif %});
+      top: -{{ module.row_settings.adv_settings.padding_top }};
+    }
+    {% if module.row_settings.wave_top.type == 'opt_6' %}
+      #hs_cos_wrapper_{{ name }} .hhs-wave-con-top svg {
+        fill: rgba({{ module.row_settings.wave_top.color.color|convert_rgb }}, {% if module.row_settings.wave_top.color.opacity == '100' %}1{% else %}0.{{ module.row_settings.wave_top.color.opacity }}{% endif %});
+        height: {{ module.row_settings.wave_top.angle_height }}px;
+      }
+    {% endif %}
+    {%- if module.row_settings.wave_top.flip_wave -%}
+      #hs_cos_wrapper_{{ name }} .hhs-wave-con-top .hhs-wave-module svg {
+        transform: scale(-1, -1) !important;
+      }
+    {%- endif -%}
+    @media (max-width: 922px) {
+      #hs_cos_wrapper_{{ name }} .hhs-wave-con-top {
+        top: -{{ module.row_settings.adv_settings.padding_top_tablet }};
+      }
+    }
+    @media (max-width: 575px) {
+      #hs_cos_wrapper_{{ name }} .hhs-wave-con-top {
+        top: -{{ module.row_settings.adv_settings.padding_top_mobile }};
+      }
+    }
+  {%- endif -%}
+  
+  {# END #}
+  {# TAB STYLE #}
+  {# TABS #}
+  
+  #hs_cos_wrapper_{{ name }} .hhs-tab-wrapper button {
+    background-color: rgba({{module.style_settings.tabs.tab_color.color|convert_rgb }}, {{ module.style_settings.tabs.tab_color.opacity * 0.01 }});
+    color: rgba({{ module.style_settings.tabs.text_color.color|convert_rgb }}, {{ module.style_settings.tabs.text_color.opacity * 0.01 }});
+    border-top: 3px solid rgba({{ module.style_settings.tabs.tab_color.color|convert_rgb }}, {{ module.style_settings.tabs.tab_color.opacity * 0.01 }});
+    font-size: {{ module.style_settings.tabs.text_size }}px;
+    font-weight: {{ module.style_settings.tabs.text_weight }};
+  } 
+  
+  #hs_cos_wrapper_{{ name }} .selected-tab,
+  #hs_cos_wrapper_{{ name }} .hhs-tab-wrapper button.is-active,
+  #hs_cos_wrapper_{{ name }} .hhs-tab-wrapper button:focus,
+  #hs_cos_wrapper_{{ name }} .hhs-tab-wrapper button:active {
+    background-color: rgba({{ module.style_settings.tabs.tab_color_active.color|convert_rgb }}, {{ module.style_settings.tabs.tab_color_active.opacity * 0.01 }});
+    color: rgba({{ module.style_settings.tabs.text_color_active.color|convert_rgb }}, {{ module.style_settings.tabs.text_color_active.opacity * 0.01 }});
+  } 
+  
+  #hs_cos_wrapper_{{ name }} .selected-tab {
+    font-size: {{ module.style_settings.tabs.text_size }}px;
+    font-weight: {{ module.style_settings.tabs.text_weight }};
+    {% if module.style_settings.tab_position == 'top' %}
+      border-top: 3px solid rgba(var(--tab-color), var(--tab-opacity));
+    {% endif %}
+  }
+  
+  #hs_cos_wrapper_{{ name }} .hhs-tab-wrapper button {
+    {% if module.style_settings.tab_position == 'top' %}
+      border-top: 3px solid rgba({{module.style_settings.tabs.tab_color.color|convert_rgb }}, {{ module.style_settings.tabs.tab_color.opacity * 0.01 }});
+    {% endif %}
+  } 
+  
+  #hs_cos_wrapper_{{ name }} .hhs-tab-wrapper button.is-active {
+    {% if module.style_settings.tab_position == 'top' %}
+      border-top: 3px solid rgba(var(--tab-color), var(--tab-opacity));
+    {% endif %}
+    
+   
+  }
+  
+  {% if module.style_settings.tab_position == 'left' %}
+    @media (min-width: 576px) {
+      #hs_cos_wrapper_{{ name }} .selected-tab {
+        border-left: 5px solid rgba(var(--tab-color), var(--tab-opacity));
+        border-top: none;
+      }
+      
+      #hs_cos_wrapper_{{ name }} .hhs-tab-wrapper li {
+        border-top: none;
+        border-bottom: none;
+      } 
+      
+      #hs_cos_wrapper_{{ name }} .hhs-tab-wrapper button {
+        border-left: 5px solid rgba({{ module.style_settings.tabs.text_color.color|convert_rgb }}, {{ module.style_settings.tabs.text_color.opacity * 0.01 }});;
+        border-top: none;
+        padding-inline: 15px;
+        padding-block: 25px;
+      } 
+
+      #hs_cos_wrapper_{{ name }} .hhs-tab-wrapper button.is-active {
+        border-left: 5px solid rgba(var(--tab-color), var(--tab-opacity));
+        border-top: none;
+      }
+    }
+  
+    @media (max-width: 575px) {
+      #hs_cos_wrapper_{{ name }} .selected-tab {
+        background-color: rgba(var(--tab-color), var(--tab-opacity));
+        margin-bottom: 3px;
+        cursor: pointer;
+        color:rgba(var(--panel-text-color));
+        border-radius:5px;
+      }
+      
+      #hs_cos_wrapper_{{ name }} .selected-tab::after {
+        border-color: rgba(var(--panel-text-color));
+
+      }
+  
+  
+      #hs_cos_wrapper_{{ name }} .hhs-tab-wrapper button {
+        border-top: 3px solid rgba(var(--tab-color), var(--tab-opacity));
+      } 
+
+      #hs_cos_wrapper_{{ name }} .hhs-tab-wrapper button.is-active {
+        border-top: 3px solid rgba(var(--tab-color), var(--tab-opacity));
+      }
+    }
+  {% endif %}
+  
+  {# CONTENT AREA #}
+  
+  #hs_cos_wrapper_{{ name }} .hhs-panel-wrapper {
+    background-color: rgba({{ module.style_settings.tab_con_color.color|convert_rgb }}, {{ module.style_settings.tab_con_color.opacity * 0.01 }});
+  }
+  
+  #hs_cos_wrapper_{{ name }} .panel {
+    padding: {{ module.style_settings.panel_padding }}px;
+    border-radius:5px;
+    {%- if module.style_settings.add_drop_shadow -%}
+      -webkit-box-shadow: 0 10px 10px 0 rgba(0,0,0,0.08);
+      box-shadow: 0 10px 10px 0 rgba(0,0,0,0.08);
+    {%- endif -%}
+  }
+  
+  #hs_cos_wrapper_{{ name }} .panel p, #hs_cos_wrapper_{{ name }} .panel li{
+   color: rgb(var(--panel-text-color));
+  }
+    
+  @media (max-width: 575px) {
+    #hs_cos_wrapper_{{ name }} .panel {
+      padding: {{ module.style_settings.panel_padding_mobile }}px;
+    }
+  }
+  
+</style>
+{% end_require_css %}
+
+{%- require_js -%}
+<script>  
+  function tabber(){
+  class Tabs {
+      constructor() {
+        this.tabsBlocks = document.querySelectorAll(".hhs-tabs-block_{{ name }}");
+      }
+
+    init() {
+      if (this.tabsBlocks.length > 0) {
+        Array.prototype.forEach.call(this.tabsBlocks, (tabBlock, index) => {
+          const tabContainer = tabBlock.querySelector(".hhs-tab-wrapper");
+          const tabs = tabBlock.querySelectorAll("button");
+          const panels = tabBlock.querySelectorAll(".panel");
+
+          tabContainer.setAttribute("role", "tablist");
+
+          Array.prototype.forEach.call(tabs, (tab) => {
+            if (tab.dataset.open === "true") this.toggleTabs(tab, panels);
+
+            tab.setAttribute("role", "tab");
+            tab.setAttribute(
+              "aria-controls",
+              `panel-${tab.dataset.target}-block-${index + 1}`
+            );
+
+            const associatedPanel = tabBlock.querySelector(
+              `[data-panel="${tab.dataset.target}"]`
+            );
+
+            if (associatedPanel !== null) {
+              associatedPanel.id = `panel-${tab.dataset.target}-block-${
+              index + 1
+            }`;
+              tab.id = `tab-${tab.dataset.target}-block-${index + 1}`;
+            }
+
+            tab.addEventListener("click", () => {
+              this.toggleTabs(tab, panels);
+            });
+          });
+
+          Array.prototype.forEach.call(panels, (panel) => {
+            const associatedTab = tabBlock.querySelector(
+              `[data-target="${panel.dataset.panel}"]`
+            );
+
+            panel.setAttribute("role", "tabpanel");
+            panel.setAttribute("aria-labelledby", `${associatedTab.id}`);
+          });
+        });
+      }
+    }
+
+    toggleTabs = (currentTab, panels) => {
+      const tabs = currentTab.closest(".hhs-tabs-block_{{ name }}").querySelectorAll("button");
+      const target = currentTab.dataset.target;
+                                      
+      Array.prototype.forEach.call(tabs, (tab) => {
+        if (tab.dataset.target !== target) {
+          tab.classList.remove("is-active");
+          tab.setAttribute("aria-selected", "false");
+        }
+      });
+
+      Array.prototype.forEach.call(panels, (panel) => {
+        if (panel.dataset.panel !== target) {
+          panel.classList.remove("is-active");
+        } else {
+          panel.classList.add("is-active");
+          currentTab.classList.add("is-active");
+          currentTab.setAttribute("aria-selected", "true");
+        }
+      });
+    };
+   }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const tabs = new Tabs();
+    tabs.init();
+    
+  });
+  }
+    tabber();  
+  
+  // customization for user defined accent colors
+  document.addEventListener('DOMContentLoaded', function () {
+    const infiniteTabs = document.querySelectorAll("#hs_cos_wrapper_{{ name }} .infinite");
+    
+    function findAncestorWithId(element, id) {
+      while (element !== null && element.id !== id) {
+        element = element.parentElement;
+      }
+      return element;
+    }
+                                                   
+    for (let i = 0; i < 1; i++) {
+      const defaultTabColor = infiniteTabs[i].getAttribute('data-color');
+      const defaultTabOpacity = infiniteTabs[i].getAttribute('data-opacity');
+      const convertedDefaultTabOpacity = defaultTabOpacity * 0.01;
+      const defaultPanelColor = infiniteTabs[i].getAttribute('data-panel-text-color');
+      
+      const defaultParentWithId = findAncestorWithId(infiniteTabs[i], "hs_cos_wrapper_{{ name }}");
+      
+      if (defaultParentWithId) {
+        defaultParentWithId.style.setProperty('--tab-color', defaultTabColor);
+        defaultParentWithId.style.setProperty('--tab-opacity', convertedDefaultTabOpacity);
+        defaultParentWithId.style.setProperty('--panel-text-color', defaultPanelColor);
+      }
+    };
+
+    infiniteTabs.forEach(tab => {    
+      tab.addEventListener('click', function () {
+        // Get selected colors
+        const color = this.getAttribute('data-color');
+        const opacity = this.getAttribute('data-opacity');
+        const convertedOpacity = opacity * 0.01;
+        const panelColor = this.getAttribute('data-panel-text-color');
+        
+        const parentWithId = findAncestorWithId(this, "hs_cos_wrapper_{{ name }}");
+        
+        if (parentWithId) {
+          console.log(parentWithId);
+          // Set the CSS variables to the selected colors on the parent element
+          parentWithId.style.setProperty('--tab-color', color);
+          parentWithId.style.setProperty('--tab-opacity', convertedOpacity);
+          parentWithId.style.setProperty('--panel-text-color', panelColor);
+        }
+        
+        
+        // Remove the 'fade-up' class from all panels
+        const panels = document.querySelectorAll('.panel');
+        panels.forEach(panel => {
+          panel.classList.remove('fade-up');
+        });
+
+        // Find the corresponding panel and add the 'fade-up' class to it
+        const tabId = this.getAttribute('data-target');
+        const correspondingPanel = document.querySelector(`[data-panel="${tabId}"]`);
+        if (correspondingPanel) {
+          correspondingPanel.classList.add('fade-up');
+         
+        }
+      });
+    });
+  });
+
+  
+  
+</script>
+{%- end_require_js -%}
+
+  
+<div id="{{ module.row_settings.code.section_id }}" class="hhs-tab-mod {% if module.row_settings.image_loading == 'lazy' %}lazy-background{% endif %} {% if module.row_settings.visibility.vis_phone %}show-mobile{% else %}hide-mobile{% endif %} {% if module.row_settings.visibility.vis_tablet %}show-tablet{% else %}hide-tablet{% endif %} {% if module.row_settings.visibility.vis_desktop %}show-desktop{% else %}hide-desktop{% endif %} {% if module.row_settings.shadow == 'inner' %}inner-shadow{% endif %} {% if module.row_settings.shadow == 'outer' %}outer-shadow{% endif %} {{ module.row_settings.code.section_class }}  {% if module.row_settings.parallax %}parallax{% endif %}">
+  {%- if module.row_settings.add_wave_top -%} 
+    <div class="hhs-wave-con-top">
+      <div class="hhs-wave-module">
+        {%- if module.row_settings.wave_top.type == 'opt_1' -%}
+          <svg id="opt_1" data-name="opt 1" xmlns="http://www.w3.org/2000/svg" width="1366" height="128" viewBox="0 0 1366 128" preserveAspectRatio="none"><defs><style>.cls-1{fill:currentColor;fill-rule:evenodd;}</style></defs><g id="Wave-1"><path id="Rectangle" class="cls-1" d="M0,0C623,0,667,151.4614,1366,121.6993V128H0Z"></path></g></svg>
+        {%- elif module.row_settings.wave_top.type == 'opt_2' -%}
+          <svg id="opt_2" data-name="opt 2" xmlns="http://www.w3.org/2000/svg" width="1366" height="64" viewBox="0 0 1366 64" preserveAspectRatio="none"><defs><style>.cls-1{fill:currentColor;fill-rule:evenodd;}</style></defs><g id="Wave-2"><path id="Rectangle-Copy-6" class="cls-1" d="M0,64H1366V62.9663C1240.4894,64.6734,669.439,0,299,0H0Z"></path></g></svg>
+        {%- elif module.row_settings.wave_top.type == 'opt_3' -%}
+          <svg id="opt_3" data-name="opt 3" xmlns="http://www.w3.org/2000/svg" width="1366" height="88" viewBox="0 0 1366 88" preserveAspectRatio="none"><defs><style>.cls-1{fill:currentColor;fill-rule:evenodd;}</style></defs><g id="Wave-2"><path id="Rectangle" class="cls-1" d="M0,47.8021c307.5088,0,483.3828,29.3677,656.8125,29.3677S1028.2269,6.8806,1366,0V88H0Z"></path></g></svg>
+        {%- elif module.row_settings.wave_top.type == 'opt_4' -%}
+          <svg id="opt_4" data-name="opt 4" xmlns="http://www.w3.org/2000/svg" width="1366" height="64" viewBox="0 0 1366 64" preserveAspectRatio="none"><defs><style>.cls-1{fill:currentColor;fill-rule:evenodd;}</style></defs><g id="Wave-4"><path id="Rectangle-Copy-6" class="cls-1" d="M1366,64H0V.0337c205,0,709,55.6648,1366,55.6648Z"></path></g></svg>
+        {%- elif module.row_settings.wave_top.type == 'opt_5' -%}
+          <svg id="opt_5" data-name="opt 5" xmlns="http://www.w3.org/2000/svg" width="1366" height="64" viewBox="0 0 1366 64" preserveAspectRatio="none"><defs><style>.cls-1{fill:currentColor;fill-rule:evenodd;}</style></defs><g id="Wave-7"><path id="Rectangle" class="cls-1" d="M0,61.49C623,61.49,699,13.1117,1366,0V64H0Z"></path></g></svg>
+        {%- elif module.row_settings.wave_top.type == 'opt_6' -%}
+          <svg id="opt_6" data-name="opt 6" viewBox="0 0 200 200" preserveAspectRatio="none"><polygon points="0,200 200,0 200,200" /></svg>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endif -%}
+  <div class="{{ module.row_settings.content_width }}" style="{% if module.row_settings.content_width == 'custom' %} max-width: {{ module.row_settings.set_width }}px; margin: auto;{% endif %}">
+    <div class="row">
+      <div class="col-12">
+        <section class="
+                        hhs-tab-content 
+                        hhs-tabs-block_{{ name }} 
+                        {% if module.style_settings.tab_position == 'left' %}tabs-left row{% endif %}
+                        ">
+          <ul class="hhs-tab-wrapper is-d-flex tabs">
+            {% for item in module.tab %}
+              <li style="position: relative;">
+                <button class="infinite" data-target="{{ name }}_{{ loop.index }}" data-color="{{ item.active_tab_accent_color.color|convert_rgb }}" data-opacity="{{ item.active_tab_accent_color.opacity }}" data-panel-text-color="{{ item.col_1.text_color.color|convert_rgb }}" {% if loop.first %}data-open="true" class="infinite selected"{%- endif -%}>
+                {{ item.tab_label }}
+                </button></li>
+            {% endfor %}
+          </ul>
+          <div class="hhs-panel-wrapper">
+            {% for item in module.tab %}
+
+              {% if item.num_cols == '1' -%}
+                {% set col_size_1 = 'col-12' %}
+              {% elif item.num_cols == '2' -%}
+                
+                {%- if item.col_arrangement == 'opt_1' -%}
+                  {% set col_size_1 = 'col-lg-6 col-sm-12' %}
+                  {% set col_size_2 = 'col-lg-6 col-sm-12' %}
+                {%- endif -%}
+
+                {%- if item.col_arrangement == 'opt_2' -%}
+                  {% set col_size_1 = 'col-lg-5 col-sm-12' %}
+                  {% set col_size_2 = 'col-lg-7 col-sm-12' %}
+                {%- endif -%}
+
+                {%- if item.col_arrangement == 'opt_3' -%}
+                  {% set col_size_1 = 'col-lg-7 col-sm-12' %}
+                  {% set col_size_2 = 'col-lg-5 col-sm-12' %}
+                {%- endif -%}
+
+                {%- if item.col_arrangement == 'opt_4' -%}
+                  {% set col_size_1 = 'col-lg-4 col-sm-12' %}
+                  {% set col_size_2 = 'col-lg-8 col-sm-12' %}
+                {%- endif -%}
+
+                {%- if item.col_arrangement == 'opt_5' -%}
+                  {% set col_size_1 = 'col-lg-8 col-sm-12' %}
+                  {% set col_size_2 = 'col-lg-4 col-sm-12' %}
+                {%- endif -%}
+
+                {%- if item.col_arrangement == 'opt_6' -%}
+                  {% set col_size_1 = 'col-lg-3 col-sm-12' %}
+                  {% set col_size_2 = 'col-lg-9 col-sm-12' %}
+                {%- endif -%}
+
+                {%- if item.col_arrangement == 'opt_7' -%}
+                  {% set col_size_1 = 'col-lg-9 col-sm-12' %}
+                  {% set col_size_2 = 'col-lg-3 col-sm-12' %}
+                {%- endif -%}
+            
+                {%- if item.col_arrangement == 'opt_8' -%}
+                  {% set col_size_1 = 'col-lg-12 col-sm-12' %}
+                  {% set col_size_2 = 'col-lg-12 col-sm-12' %}
+                {%- endif -%}
+
+              {%- endif -%}
+              <div class="panel" data-panel="{{ name }}_{{ loop.index }}" {% if item.gradient_background_color %} style="background: linear-gradient(180deg, {{ item.panel_background_color.rgba }} 35%, {{ item.panel_background_color_2.rgba }} 100%); {{ item.panel_background_color.color }}" {% else %} style="background-color: {{ item.panel_background_color.color }}" {%- endif -%} >
+                <div class="row" style="flex-direction: column-reverse;">
+                  <div class="{{ col_size_1 }}" >
+                    {% inline_rich_text field="col_1.content" value="{{ item.col_1.content }}" %}
+                    {% if item.col_1.cta_link %} <a class="{%- if item.col_1.cta_link_style == "cta_1" -%}cta-primary{%- endif -%} {%- if item.col_1.cta_link_style == "cta_2" -%}cta-secondary{%- endif -%} {%- if item.col_1.cta_link_style == "cta_3" -%}cta-tertiary{%- endif -%} {%- if item.col_1.cta_link_style == "cta_4" -%}cta-four{%- endif -%} {%- if item.col_1.cta_link_style == "cta_5" -%}cta-five{%- endif -%}" href="{{ item.col_1.cta_link.url.href }}">Read More</a> {%- endif -%}
+                  </div>
+                  {%- if item.num_cols == '2' -%}
+                    <div class="{{ col_size_2 }}">
+                      <img src="{{ item.col_2.image_field.src }}" alt="{{ item.col_2.image_field.alt }}">
+                    </div>
+                  {%- endif -%}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+  {% if module.row_settings.parallax %}
+    <div class="para-background
+                js-{{ name }}-parallax
+                {{ 'para-background--show-mobile' if module.row_settings.parallax_on_mobile == false }}">
+      <img class="para-background__image
+                  js-{{ name }}-parallax__background"   
+           src="{{ module.row_settings.bg_image.src }}" 
+           alt="{{ module.row_settings.bg_image.alt }}" 
+           loading="lazy" 
+           width="{{ module.row_settings.bg_image.width }}" 
+           height="{{ module.row_settings.bg_image.height }}" />
+    </div>
+  {% endif %}
+  {{ '<span class="hhs-row-overlay"></span>' if module.row_settings.overlay_bg != 'none'  }}
+  {%- if module.row_settings.add_wave_btm -%} 
+    <div class="hhs-wave-con">
+      <div class="hhs-wave-module">
+        {%- if module.row_settings.wave.type == 'opt_1' -%}
+          <svg id="opt_1" data-name="opt 1" xmlns="http://www.w3.org/2000/svg" width="1366" height="128" viewBox="0 0 1366 128" preserveAspectRatio="none"><defs><style>.cls-1{fill:currentColor;fill-rule:evenodd;}</style></defs><g id="Wave-1"><path id="Rectangle" class="cls-1" d="M0,0C623,0,667,151.4614,1366,121.6993V128H0Z"></path></g></svg>
+        {%- elif module.row_settings.wave.type == 'opt_2' -%}
+          <svg id="opt_2" data-name="opt 2" xmlns="http://www.w3.org/2000/svg" width="1366" height="64" viewBox="0 0 1366 64" preserveAspectRatio="none"><defs><style>.cls-1{fill:currentColor;fill-rule:evenodd;}</style></defs><g id="Wave-2"><path id="Rectangle-Copy-6" class="cls-1" d="M0,64H1366V62.9663C1240.4894,64.6734,669.439,0,299,0H0Z"></path></g></svg>
+        {%- elif module.row_settings.wave.type == 'opt_3' -%}
+          <svg id="opt_3" data-name="opt 3" xmlns="http://www.w3.org/2000/svg" width="1366" height="88" viewBox="0 0 1366 88" preserveAspectRatio="none"><defs><style>.cls-1{fill:currentColor;fill-rule:evenodd;}</style></defs><g id="Wave-2"><path id="Rectangle" class="cls-1" d="M0,47.8021c307.5088,0,483.3828,29.3677,656.8125,29.3677S1028.2269,6.8806,1366,0V88H0Z"></path></g></svg>
+        {%- elif module.row_settings.wave.type == 'opt_4' -%}
+          <svg id="opt_4" data-name="opt 4" xmlns="http://www.w3.org/2000/svg" width="1366" height="64" viewBox="0 0 1366 64" preserveAspectRatio="none"><defs><style>.cls-1{fill:currentColor;fill-rule:evenodd;}</style></defs><g id="Wave-4"><path id="Rectangle-Copy-6" class="cls-1" d="M1366,64H0V.0337c205,0,709,55.6648,1366,55.6648Z"></path></g></svg>
+        {%- elif module.row_settings.wave.type == 'opt_5' -%}
+          <svg id="opt_5" data-name="opt 5" xmlns="http://www.w3.org/2000/svg" width="1366" height="64" viewBox="0 0 1366 64" preserveAspectRatio="none"><defs><style>.cls-1{fill:currentColor;fill-rule:evenodd;}</style></defs><g id="Wave-7"><path id="Rectangle" class="cls-1" d="M0,61.49C623,61.49,699,13.1117,1366,0V64H0Z"></path></g></svg>
+        {%- elif module.row_settings.wave.type == 'opt_6' -%}
+          <svg id="opt_6" data-name="opt 6" viewBox="0 0 200 200" preserveAspectRatio="none"><polygon points="0,200 200,0 200,200" /></svg>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endif -%}
+</div>
+
+
+{# ASYNC CSS LOAD #}
+{{ require_css(get_asset_url("../../css/modules/row-tabbed-content.css"), { async: true }) }}
+
+{% if module.row_settings.parallax == 'true' && module.row_settings.bg_type == 'image' %}
+  {{ require_js(get_asset_url("../../js/parallax.js")) }}
+{% endif %}
+
+{% require_js %}
+{% if module.row_settings.parallax %}
+  <script defer>
+    {% unless module.row_settings.parallax_on_mobile %}
+      if (window.matchMedia('(min-width: 768px)').matches) {  
+    {% endunless %}
+          var image = document.getElementsByClassName('js-{{ name }}-parallax__background');
+          new simpleParallax(image, {
+            delay: {{ module.row_settings.parallax_delay }},
+            scale: {{ module.row_settings.parallax_scale }},
+            transition: "{{ module.row_settings.parallax_transition }}",
+            orientation: "{{ module.row_settings.parallax_orientation }}",
+            customWrapper: ".js-{{ name }}-parallax",
+          });
+    {% unless module.row_settings.parallax_on_mobile %}
+      }
+    {% endunless %}
+  </script>
+{% endif %}
+{%- end_require_js -%}

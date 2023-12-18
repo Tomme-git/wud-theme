@@ -1,0 +1,132 @@
+{
+  "button_text.default" : {
+    "message" : "Magdagdag ng button link dito",
+    "description" : "",
+    "placeholders" : null
+  },
+  "button_text.label" : {
+    "message" : "Button text",
+    "description" : "",
+    "placeholders" : null
+  },
+  "horizontal_spacing.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "horizontal_spacing.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "horizontal_spacing.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "horizontal_spacing.label" : {
+    "message" : "Number",
+    "description" : null,
+    "placeholders" : null
+  },
+  "horizontal_spacing.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "link.label" : {
+    "message" : " ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "name" : {
+    "message" : "T - Button",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style.button_color.label" : {
+    "message" : "Kulay ng button",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button_font.label" : {
+    "message" : "Font ng button",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.button_hover_color.label" : {
+    "message" : "Kulay ng pag-hover sa button",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.label" : {
+    "message" : "Mga opsyon sa estilo",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.override_default_style.label" : {
+    "message" : "I-override sa default na estilo",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style.text_hover_color.label" : {
+    "message" : "Kulay ng pag-hover sa text",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style_1.name" : {
+    "message" : "T - Button",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style_1.spacing_field.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style_1.spacing_field.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style_1.spacing_field.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style_1.spacing_field.label" : {
+    "message" : "Spacing",
+    "description" : null,
+    "placeholders" : null
+  },
+  "style_1.spacing_field.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "vertical_spacing.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "vertical_spacing.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "vertical_spacing.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "vertical_spacing.label" : {
+    "message" : "Number",
+    "description" : null,
+    "placeholders" : null
+  },
+  "vertical_spacing.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  }
+}

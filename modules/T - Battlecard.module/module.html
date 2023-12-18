@@ -1,0 +1,178 @@
+{% require_css %}
+  <style>
+    {#
+    
+    ADD STYLE CUSTOMIZABILITY HERE
+    
+    #}
+    #hs_cos_wrapper_{{ name }} table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    #hs_cos_wrapper_{{ name }} th, #hs_cos_wrapper_{{ name }} td {
+      border: 1px solid #ddd;
+      padding: 20px;
+      text-align: left;
+      width: calc(100% / {{ module.table_columns }});
+      min-width: 160px;
+      border-inline: none;
+    }
+    
+    #hs_cos_wrapper_{{ name }} th {
+      background-color: #d1eaed;
+    }
+    #hs_cos_wrapper_{{ name }} td {
+      background-color: #ffffff;
+    }
+    
+    #hs_cos_wrapper_{{ name }} th p, #hs_cos_wrapper_{{ name }} td p, #hs_cos_wrapper_{{ name }} th h6, #hs_cos_wrapper_{{ name }} td h6  {
+       margin-bottom: 0 !important;
+    }
+    
+    #hs_cos_wrapper_{{ name }} th:first-child, #hs_cos_wrapper_{{ name }} td:first-child {
+      width: 60%;
+      min-width:240px;
+    }
+
+
+    
+
+    
+    {% if module.column_settings.first_column.uniq_first_col %}
+    #hs_cos_wrapper_{{ name }} th:first-child {
+      background-color: rgba({{ module.column_settings.first_column.title_bg_color_1.color|convert_rgb }},{{ module.column_settings.first_column.title_bg_color_1.opacity * 0.01}});
+    }
+    #hs_cos_wrapper_{{ name }} th:first-child * {
+      color: {{ module.column_settings.first_column.title_text_color_1.color }};
+    }
+    {% endif %}
+
+    @media (max-width: 600px) {
+
+      #hs_cos_wrapper_{{ name }} table {
+        max-width: 100%;
+      }
+      
+      #hs_cos_wrapper_{{ name }} th, #hs_cos_wrapper_{{ name }} td {
+        min-width: 160px;
+      }
+      
+      #hs_cos_wrapper_{{ name }} th:first-child, #hs_cos_wrapper_{{ name }} td:first-child {
+        width: 60%;
+      }
+
+    }
+    
+    {# ROW STYLE #}
+  
+    #hs_cos_wrapper_{{ name }} .hhs-bc-mod {
+      padding-top: {{ module.row_settings.adv_settings.padding_top }};
+      padding-bottom:  {{ module.row_settings.adv_settings.padding_bottom }};
+      {% if module.row_settings.bg_color.color %}
+        background-color: rgba({{ module.row_settings.bg_color.color|convert_rgb }}, {{ module.row_settings.bg_color.opacity * 0.01 }});
+      {% endif %}
+      {% if module.row_settings.shadow %}
+        position: relative;
+        z-index: 1;
+      {% endif %}
+    }
+
+    @media (max-width: 922px) {
+      #hs_cos_wrapper_{{ name }} .hhs-bc-mod {
+        padding-top: {{ module.row_settings.adv_settings.padding_top_tablet }};
+        padding-bottom: {{ module.row_settings.adv_settings.padding_bottom_tablet }};
+      }
+    }
+
+    @media (max-width: 575px) {
+      #hs_cos_wrapper_{{ name }} .hhs-bc-mod {
+        padding-top: {{ module.row_settings.adv_settings.padding_top_mobile }};
+        padding-bottom: {{ module.row_settings.adv_settings.padding_bottom_mobile }};
+      }
+    }
+
+    {# SHADOW #}
+
+    {%- if module.row_settings.shadow == 'inner' -%}
+      #hs_cos_wrapper_{{ name }} .inner-shadow {
+        -webkit-box-shadow:inset 0 0 {{ module.row_settings.shadow_size }}px 1px rgba({{ module.row_settings.shadow_color.color|convert_rgb }}, {% if module.row_settings.shadow_color.opacity == '100' %}1{% else %}0.{{ module.row_settings.shadow_color.opacity }}{% endif %});
+        box-shadow:inset 0 0 {{ module.row_settings.shadow_size }}px 1px rgba({{ module.row_settings.shadow_color.color|convert_rgb }}, {% if module.row_settings.shadow_color.opacity == '100' %}1{% else %}0.{{ module.row_settings.shadow_color.opacity }}{% endif %});
+      }
+    {%- elif module.row_settings.shadow == 'outer' -%}
+      #hs_cos_wrapper_{{ name }} .outer-shadow {
+       -webkit-box-shadow: 0 0 {{ module.row_settings.shadow_size }}px 1px rgba({{ module.row_settings.shadow_color.color|convert_rgb }}, {% if module.row_settings.shadow_color.opacity == '100' %}1{% else %}0.{{ module.row_settings.shadow_color.opacity }}{% endif %});
+        box-shadow: 0 0 {{ module.row_settings.shadow_size }}px 1px rgba({{ module.row_settings.shadow_color.color|convert_rgb }}, {% if module.row_settings.shadow_color.opacity == '100' %}1{% else %}0.{{ module.row_settings.shadow_color.opacity }}{% endif %});   
+        z-index: 1;
+        position: relative;
+      }
+    {%- endif -%}
+  </style>
+{% end_require_css %}
+
+<div id="{{ module.row_settings.code.section_id }}" class="hhs-bc-mod {% if module.row_settings.visibility.vis_phone %}show-mobile{% else %}hide-mobile{% endif %} {% if module.row_settings.visibility.vis_tablet %}show-tablet{% else %}hide-tablet{% endif %} {% if module.row_settings.visibility.vis_desktop %}show-desktop{% else %}hide-desktop{% endif %}  {% if module.row_settings.shadow == 'inner' %}inner-shadow{% endif %} {% if module.row_settings.shadow == 'outer' %}outer-shadow{% endif %} {{ module.row_settings.code.section_class }}">
+  <div class="{{ module.row_settings.content_width }}" style="{% if module.row_settings.content_width == 'custom' %} max-width: {{ module.row_settings.set_width }}px; margin: auto; padding-inline: 15px;{% endif %}">
+    <div style="overflow-x: auto;" class="row">
+      {% set columns = module.table_columns %}
+      <table>
+
+        {% set titles = module.column_titles %}
+        <thead>
+          <tr>
+            <th scope="col">{{ titles.col_1 }}</th>
+            {% if columns == "two" or columns == "three" or columns == "four" or columns == "five" or columns == "six" or columns == "seven" %}
+              <th scope="col">{{ titles.col_2 }}</th>
+            {% endif %}
+            {% if columns == "three" or columns == "four" or columns == "five" or columns == "six" or columns == "seven" %}
+              <th scope="col">{{ titles.col_3 }}</th>
+            {% endif %}
+            {% if columns == "four" or columns == "five" or columns == "six" or columns == "seven" %}
+              <th scope="col">{{ titles.col_4 }}</th>
+            {% endif %}
+            {% if columns == "five" or columns == "six" or columns == "seven" %}
+              <th scope="col">{{ titles.col_5 }}</th>
+            {% endif %}
+            {% if columns == "six" or columns == "seven" %}
+              <th scope="col">{{ titles.col_6 }}</th>
+            {% endif %}
+            {% if columns == "seven" %}
+              <th scope="col">{{ titles.col_7 }}</th>
+            {% endif %}
+          </tr>
+        </thead>
+
+        {% set content = module.content %}
+        <tbody>
+
+          {% for item in content %}
+            <tr>
+              <td scope="row">{% inline_rich_text field="col_1" value="{{ item.col_1 }}" %}</td>
+              {% if columns == "two" or columns == "three" or columns == "four" or columns == "five" or columns == "six" or columns == "seven" %}
+                <td>{% inline_rich_text field="col_2" value="{{ item.col_2 }}" %}</td>
+              {% endif %}
+              {% if columns == "three" or columns == "four" or columns == "five" or columns == "six" or columns == "seven" %}
+                <td>{% inline_rich_text field="col_3" value="{{ item.col_3 }}" %}</td>
+              {% endif %}
+              {% if columns == "four" or columns == "five" or columns == "six" or columns == "seven" %}
+                <td>{% inline_rich_text field="col_4" value="{{ item.col_4 }}" %}</td>
+              {% endif %}
+              {% if columns == "five" or columns == "six" or columns == "seven" %}
+                <td>{% inline_rich_text field="col_5" value="{{ item.col_5 }}" %}</td>
+              {% endif %}
+              {% if columns == "six" or columns == "seven" %}
+                <td>{% inline_rich_text field="col_6" value="{{ item.col_6 }}" %}</td>
+              {% endif %}
+              {% if columns == "seven" %}
+                <td>{% inline_rich_text field="col_7" value="{{ item.col_7 }}" %}</td>
+              {% endif %}
+            </tr>
+          {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

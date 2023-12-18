@@ -1,0 +1,54 @@
+{# 
+ NAME: Flexible Logo Area
+#}
+
+{% require_css %}
+<style>
+  #hs_cos_wrapper_{{ name }} .inf-module-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding-block: 30px 40px;
+    {%- if module.row_settings.bg_type == "color" -%}
+    background-color: {{ module.row_settings.background_color.rgba }};
+    {%- endif -%}
+    {%- if module.row_settings.bg_type == "gradient" -%}
+    background: linear-gradient(90deg, {{ module.row_settings.gradient_color_1.rgba }} 0%, {{ module.row_settings.gradient_color_2.rgba }} 100%);
+    {%- endif -%}
+    {%- if module.row_settings.bg_type == "image" -%}
+    background-image: url("{{ module.row_settings.bg_image.src }}");
+      {%- if module.row_settings.repeat_background_image -%}
+      background-repeat: repeat;
+      {% else %}
+      background-repeat: no-repeat;
+      {%- endif -%}
+    {%- endif -%}
+  }
+  
+  #hs_cos_wrapper_{{ name }} .inf-single-logo {
+    max-width: 14%;
+  }
+  
+  #hs_cos_wrapper_{{ name }} .inf-single-logo img {
+    {%- if module.grayscale_logos -%} filter: grayscale(calc({{ module.grayscale_amount }} * 0.01)); {%- endif -%}
+    opacity: calc({{ module.logo_opacity }} * 0.01);
+  }
+  
+  @media only screen and (max-width: 1000px) {
+  #hs_cos_wrapper_{{ name }} .inf-single-logo {
+    min-width: 200px;
+  }
+}
+
+</style>
+{% end_require_css %}
+<div class="inf-module-wrapper">
+  <div class="inf-module-container">
+    {% for item in module.logos %}
+    <div class="inf-single-logo">
+      <img src="{{ item.logo_field.src }}" alt="{{ item.logo_field.src }}" />
+    </div>
+    {% endfor %}
+  </div>
+</div>
